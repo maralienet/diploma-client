@@ -38,24 +38,54 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header{
-  &>div{
+header {
+  &>div {
     background-color: $lapis-lazuli;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 50px;
-    .logo{
-      padding: 10px 0;
-      img{
-        height: 70px;
-        width: auto;
+
+    .left {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      .logo {
+        padding: 10px 0;
+
+        img {
+          height: 70px;
+          width: auto;
+        }
+      }
+
+      .name {
+        color: #fff;
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-left: 10px;
       }
     }
-    .name{
-      color: #fff;
-      font-size: 1.1em;
-      font-weight: 600;
-      margin-left: 10px;
+
+    .right {
+      text-decoration: none;
+
+      .auth {
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          color: #fff;
+          font-size: 1.05em;
+          font-weight: 600;
+          transition: color 0.3s;
+
+          &:hover {
+            color: #c0c0c0;
+          }
+        }
+      }
     }
   }
 }
