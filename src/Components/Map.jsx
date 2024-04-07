@@ -61,7 +61,7 @@ function InnerMap() {
 
     useEffect(() => {
         if (ready) {
-            if (drawRoute && selectedCities.length > 0 && mapRef.current) {
+            if (drawRoute.draw && selectedCities.length > 0 && mapRef.current) {
                 let refs = selectedCities.map(city => [city.latitude, city.longitude]);
                 refs.push([selectedCities[0].latitude, selectedCities[0].longitude]);
 
@@ -85,7 +85,7 @@ function InnerMap() {
                     dispatch(addDetail({ key: 'duration', value: duration }))
                 });
             }
-            if (!drawRoute && selectedCities.length > 0 && mapRef.current) {
+            else if (!drawRoute.draw && mapRef.current) {
                 mapRef.current.geoObjects.each(function (geoObject) {
                     if (geoObject instanceof ymaps.multiRouter.MultiRoute) {
                         mapRef.current.geoObjects.remove(geoObject);
@@ -102,7 +102,7 @@ function InnerMap() {
                 mapRef.current.setCenter([53.902284, 27.561831], 7);
             }
         }
-    }, [ready, drawRoute, selectedCities]);
+    }, [ready, drawRoute.draw, selectedCities]);
 
     useEffect(() => {
         if (cities) {
@@ -110,13 +110,6 @@ function InnerMap() {
             cities.forEach(city => dispatch(addCity(city)));
         }
     }, [cities]);
-
-    useEffect(() => {
-        if (!drawRoute) {
-            dispatch(clearSelectedCities());
-            dispatch(clearCities());
-        }
-    }, [drawRoute]);
 
     useEffect(() => {
         if (city) {

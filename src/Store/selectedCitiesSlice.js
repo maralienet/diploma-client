@@ -24,9 +24,15 @@ const selectedCitiesSlice = createSlice({
 
         clearSelectedCities(state, action) {
             state.selectedCities = [];
-        }
+        },
+
+        clearSelectedCities_But1(state, action) {
+            if (state.selectedCities.length > 1) {
+                state.selectedCities = [state.selectedCities[0]];
+            }
+        },
     }
 })
-export const { addSelectedCity, removeSelectedCity, clearSelectedCities } = selectedCitiesSlice.actions;
+export const { addSelectedCity, removeSelectedCity, clearSelectedCities, clearSelectedCities_But1 } = selectedCitiesSlice.actions;
 
 export default selectedCitiesSlice.reducer;

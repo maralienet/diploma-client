@@ -1,4 +1,5 @@
 import Details from './Components/Details';
+import Header from './Components/Header';
 import MainManage from './Components/MainManage';
 import MainMap from './Components/Map';
 import './index.scss';
@@ -7,7 +8,7 @@ function App() {
   return (
     <>
       <header>
-
+        <Header />
       </header>
       <div className='mainPage'>
         <aside>
@@ -15,7 +16,7 @@ function App() {
         </aside>
         <main>
           <MainMap />
-          <Details/>
+          <Details />
         </main>
       </div>
     </>
