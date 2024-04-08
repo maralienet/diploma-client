@@ -28,7 +28,7 @@ function getAllDataCit() {
       }, 1500);
     });
   }
-  return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&minPopulation=5000&languageCode=ru`);
+  return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&minPopulation=6000&languageCode=ru`);
   // return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&languageCode=ru`);
 }
 

@@ -31,6 +31,12 @@ $powder-blue: #bbcde5ff;
   }
 }
 
+@mixin centeredFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -41,14 +47,13 @@ body {
 header {
   &>div {
     background-color: $lapis-lazuli;
-    display: flex;
-    align-items: center;
+    @include centeredFlex;
     justify-content: space-between;
     padding: 0 50px;
 
     .left {
-      display: flex;
-      align-items: center;
+      @include centeredFlex;
+      justify-content: flex-start;
       text-decoration: none;
 
       .logo {
@@ -108,10 +113,8 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
+  @include centeredFlex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 300px !important;
   padding: 20px 10px;
   border: 2px solid $powder-blue;
@@ -309,5 +312,131 @@ header {
       }
     }
   }
+}
 
+.auth {
+  @include centeredFlex;
+
+  .authForm {
+    margin: 150px 0;
+    border: 2px solid $lapis-lazuli;
+    border-radius: 10px;
+    @include centeredFlex;
+    flex-direction: column;
+    padding: 30px 80px 35px;
+
+    h2 {
+      color: $lapis-lazuli;
+      margin: 0 0 10px;
+      font-size: 1.8em;
+    }
+
+    form {
+      margin-top: 20px;
+
+      .inputDiv {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 25px;
+
+        input {
+          height: 30px;
+          line-height: 30px;
+          width: 300px;
+          padding: 5px 10px;
+          border-radius: 3px;
+          border: 1px solid $eerie-black;
+          font-size: 1.08em;
+
+          &:focus {
+            border: 1px solid $eerie-black;
+            outline: none;
+          }
+
+          &::placeholder {
+            color: #fff;
+          }
+        }
+
+        label {
+          span {
+            background-color: white;
+            color: rgb(88, 88, 88);
+            padding: 0 5px;
+            font-size: 1em;
+            position: absolute;
+            display: block;
+            z-index: 100;
+            margin-top: -34px;
+            margin-left: 5px;
+            transition: all 0.2s ease-in-out;
+            font-size: 1.08em;
+          }
+
+          &:has(input:focus) {
+            span {
+              color: #1c5d99ff;
+              margin-top: -55.2px;
+              font-size: 1.02em;
+            }
+          }
+
+          &:has(input:not(:placeholder-shown)) {
+            span {
+              color: #1c5d99ff;
+              margin-top: -55.2px;
+              font-size: 1.02em;
+            }
+          }
+        }
+      }
+
+      .submit {
+        button {
+          @include simpleBtn;
+          font-size: 1.2em;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+.me {
+  padding: 20px 50px;
+
+  aside {
+    width: 23%;
+  }
+
+  main {
+    width: 75%;
+  }
+
+  .header{
+    h2{
+      margin: 10px 0 25px;
+    }
+  }
+
+  .manageMenu {
+    border: 2px solid $powder-blue;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 1.1em;
+    
+    .menuItem {
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 25px 0 25px 15px;
+
+      &:not(:last-child) {
+        border-bottom: 2px solid $powder-blue;
+      }
+
+      &:hover{
+        color: $lapis-lazuli;
+      }
+    }
+  }
 }
