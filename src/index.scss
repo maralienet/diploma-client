@@ -37,6 +37,63 @@ $powder-blue: #bbcde5ff;
   align-items: center;
 }
 
+@mixin inputText {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 25px;
+
+  input {
+    height: 30px;
+    line-height: 30px;
+    width: 300px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid $eerie-black;
+    font-size: 1.08em;
+
+    &:focus {
+      border: 1px solid $eerie-black;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+
+  label {
+    span {
+      background-color: white;
+      color: rgb(88, 88, 88);
+      padding: 0 5px;
+      font-size: 1em;
+      position: absolute;
+      display: block;
+      z-index: 100;
+      margin-top: -34px;
+      margin-left: 5px;
+      transition: all 0.2s ease-in-out;
+      font-size: 1.08em;
+    }
+
+    &:has(input:focus) {
+      span {
+        color: #1c5d99ff;
+        margin-top: -55.2px;
+        font-size: 1.02em;
+      }
+    }
+
+    &:has(input:not(:placeholder-shown)) {
+      span {
+        color: #1c5d99ff;
+        margin-top: -55.2px;
+        font-size: 1.02em;
+      }
+    }
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -335,60 +392,7 @@ header {
       margin-top: 20px;
 
       .inputDiv {
-        display: flex;
-        flex-direction: column;
-        margin: 0 0 25px;
-
-        input {
-          height: 30px;
-          line-height: 30px;
-          width: 300px;
-          padding: 5px 10px;
-          border-radius: 3px;
-          border: 1px solid $eerie-black;
-          font-size: 1.08em;
-
-          &:focus {
-            border: 1px solid $eerie-black;
-            outline: none;
-          }
-
-          &::placeholder {
-            color: #fff;
-          }
-        }
-
-        label {
-          span {
-            background-color: white;
-            color: rgb(88, 88, 88);
-            padding: 0 5px;
-            font-size: 1em;
-            position: absolute;
-            display: block;
-            z-index: 100;
-            margin-top: -34px;
-            margin-left: 5px;
-            transition: all 0.2s ease-in-out;
-            font-size: 1.08em;
-          }
-
-          &:has(input:focus) {
-            span {
-              color: #1c5d99ff;
-              margin-top: -55.2px;
-              font-size: 1.02em;
-            }
-          }
-
-          &:has(input:not(:placeholder-shown)) {
-            span {
-              color: #1c5d99ff;
-              margin-top: -55.2px;
-              font-size: 1.02em;
-            }
-          }
-        }
+        @include inputText;
       }
 
       .submit {
@@ -413,10 +417,15 @@ header {
     width: 75%;
   }
 
-  .header{
-    h2{
+  .header {
+    h2 {
       margin: 10px 0 25px;
     }
+  }
+
+  .general {
+    display: flex;
+    justify-content: space-between;
   }
 
   .manageMenu {
@@ -424,7 +433,7 @@ header {
     border-radius: 15px;
     font-weight: 500;
     font-size: 1.1em;
-    
+
     .menuItem {
       cursor: pointer;
       transition: color 0.2s;
@@ -434,8 +443,70 @@ header {
         border-bottom: 2px solid $powder-blue;
       }
 
-      &:hover{
+      &:hover {
         color: $lapis-lazuli;
+      }
+    }
+  }
+
+  .manage {
+    border: 2px solid $powder-blue;
+    border-radius: 15px;
+    min-height: 258px;
+    padding: 0 15px 10px;
+
+    .body {
+      .search {
+        display: flex;
+        gap: 15px;
+
+        .inputDiv {
+          @include inputText;
+          margin-bottom: 0;
+        }
+
+        .submit {
+          button {
+            @include simpleBtn;
+            font-size: 1em;
+            font-weight: 400;
+            width: 120px;
+            height: 42px;
+          }
+        }
+      }
+
+      .listItem {
+        padding: 15px 0;
+
+        &:not(:last-child) {
+          border-bottom: 2px solid $powder-blue;
+        }
+      }
+
+      .Collapsible {
+        .Collapsible__trigger {
+          font-weight: 500;
+          cursor: pointer;
+          transition: 0.2s;
+
+          &:hover {
+            color: $lapis-lazuli;
+
+          }
+        }
+
+        .Collapsible__contentInner {
+          margin-top: 10px;
+
+          &>div:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          .numeration {
+            font-weight: 500;
+          }
+        }
       }
     }
   }

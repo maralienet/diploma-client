@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import useCookie from '../Components/useCookie'
+import CarsHandbook from "../Components/CarsHandbook";
+import CitiesHandbook from "../Components/CitiesHandbook";
 
 function Me() {
     const id = useCookie('userid');
@@ -16,22 +18,31 @@ function Me() {
             <div className="header">
                 <h2>Управление</h2>
             </div>
-            <aside>
-                <div className="manageMenu">
-                    <div className="menuItem" onClick={() => setSelectedMngmnt('cars')}>
-                        Справочник автомобилей
+            <div className="general">
+                <aside>
+                    <div className="manageMenu">
+                        <div className="menuItem" onClick={() => setSelectedMngmnt('cars')}>
+                            Справочник автомобилей
+                        </div>
+                        <div className="menuItem" onClick={() => setSelectedMngmnt('cities')}>
+                            Справочник населённых пунктов
+                        </div>
+                        <div className="menuItem" onClick={() => setSelectedMngmnt('')}>
+                            оао
+                        </div>
                     </div>
-                    <div className="menuItem" onClick={() => setSelectedMngmnt('cities')}>
-                        Справочник населённый пунктов
+                </aside>
+                <main>
+                    <div className="manage">
+                        {
+                            selectedMngmnt === 'cities'
+                                ? <CitiesHandbook />
+                                : selectedMngmnt === 'cars' 
+                                && <CarsHandbook />
+                        }
                     </div>
-                    <div className="menuItem" onClick={() => setSelectedMngmnt('')}>
-                        оао
-                    </div>
-                </div>
-            </aside>
-            <main>
-
-            </main>
+                </main>
+            </div>
         </div>
     );
 }
