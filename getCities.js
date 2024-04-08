@@ -28,18 +28,16 @@ function getAllDataCit() {
       }, 1500);
     });
   }
-  return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&minPopulation=6000&languageCode=ru`);
-  // return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&languageCode=ru`);
+  return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?types=CITY&countryIds=Q184&minPopulation=1000&maxPopulation=6000&languageCode=ru`);
 }
 
 getAllDataCit().then((allData) => {
-  let arr = allData.map(item => [item.name, item.region, item.wikiDataId, item.latitude, item.longitude]);
-
+  let arr = allData.map(item => ({ name: item.name, region: item.region, wikiDataId: item.wikiDataId, latitude: item.latitude, longitude: item.longitude }));
   arr.forEach(item => {
     axios.post(`http://localhost:3001/cities`, {
       name: item.name,
-      district: ' ',
       region: item.region,
+      district: ' ',
       wikiDataId: item.wikiDataId,
       latitude: item.latitude,
       longitude: item.longitude

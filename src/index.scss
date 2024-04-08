@@ -459,20 +459,11 @@ header {
       .search {
         display: flex;
         gap: 15px;
+        margin-bottom: 15px;
 
         .inputDiv {
           @include inputText;
           margin-bottom: 0;
-        }
-
-        .submit {
-          button {
-            @include simpleBtn;
-            font-size: 1em;
-            font-weight: 400;
-            width: 120px;
-            height: 42px;
-          }
         }
       }
 
@@ -505,6 +496,39 @@ header {
 
           .numeration {
             font-weight: 500;
+          }
+        }
+      }
+
+      .citiesList {
+        .listItem {
+          &>.Collapsible {
+            &>.Collapsible__trigger {
+              display: block;
+              width: 100%;
+              height: 40px;
+              line-height: 40px;
+              padding-left: 7px;
+              background-color: $lapis-lazuli;
+              color: #fff;
+
+              &:hover {
+                background-color: rgb(42, 132, 217);
+                color: #fff;
+              }
+            }
+
+            &>.Collapsible__contentOuter {
+              &>.Collapsible__contentInner {
+                &>div {
+                  padding-bottom: 10px;
+
+                  &:not(:last-child) {
+                    border-bottom: 2px solid $powder-blue;
+                  }
+                }
+              }
+            }
           }
         }
       }

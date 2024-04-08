@@ -5,32 +5,46 @@ import Collapsible from 'react-collapsible';
 function CarsHandbook() {
     const [brand, setBrand] = useState('');
     const [gosNumber, setGosNumber] = useState('');
-    const [carsList, setCarsList] = useState(null);
     const [filteredCars, setFilteredCars] = useState(null);
+    const [carsList, setCarsList] = useState(null);
+    const [groupedCarsList, setGroupedCarsList] = useState(null);
 
     useEffect(() => {
         axios.get("http://localhost:3001/cars").then((res) => {
-            const carsByBrand = res.data.reduce((acc, car) => {
-                if (!acc[car.brand]) {
-                    acc[car.brand] = [];
-                }
-                acc[car.brand].push(car);
-                return acc;
-            }, {});
-            setCarsList(carsByBrand);
+            setCarsList(res.data);
+            setGroupedCarsList(groupByBrand(res.data));
         });
     }, []);
 
+    function groupByBrand(cars) {
+        const carsByBrand = cars.reduce((acc, car) => {
+            if (!acc[car.brand]) {
+                acc[car.brand] = [];
+            }
+            acc[car.brand].push(car);
+            return acc;
+        }, {});
+        return carsByBrand;
+    }
+
     useEffect(() => {
-        if (brand !== '' && gosNumber === '')
-        {
-            let filter = carsList.filter(car => car.brand === brand);
+        if (brand !== '' && gosNumber === '') {
+            let filter = carsList.filter(car => car.brand.toLowerCase().startsWith(brand.toLowerCase()));
+            filter = groupByBrand(filter);
             setFilteredCars(filter);
         }
-        else if (gosNumber !== '' && brand === '')
-            setFilteredCars(carsList.filter(car => car.gosNumber === gosNumber))
-        else if (gosNumber !== '' && brand !== '')
-            setFilteredCars(carsList.filter(car => car.gosNumber === gosNumber && car.brand === brand))
+        else if (gosNumber !== '' && brand === '') {
+            let filter = carsList.filter(car => car.gosNumber.toLowerCase().startsWith(gosNumber.toLowerCase()));
+            filter = groupByBrand(filter);
+            setFilteredCars(filter);
+        }
+        else if (gosNumber !== '' && brand !== '') {
+            let filter = carsList.filter(car => car.gosNumber.toLowerCase().startsWith(gosNumber.toLowerCase()) && car.brand.toLowerCase().startsWith(brand.toLowerCase()));
+            filter = groupByBrand(filter);
+            setFilteredCars(filter);
+        }
+        else
+            setFilteredCars(null);
     }, [brand, gosNumber])
 
     return (
@@ -52,28 +66,43 @@ function CarsHandbook() {
                             <span>Гос. номер</span>
                         </label>
                     </div>
-                    <div className="submit">
-                        <button type="submit">Найти</button>
-                    </div>
                 </div>
                 <div className="carsList">
                     {
-                        carsList && Object.entries(carsList).map(([brand, cars], index) => (
-                            <div key={index} className="listItem">
-                                <Collapsible trigger={brand}>
-                                    {
-                                        cars.map((car, index) => (
-                                            <div key={car.id}>
-                                                <span className="numeration">Машина №{index + 1}</span><br />
-                                                Марка: {car.brand}<br />
-                                                Гос. номер: {car.gosNumber}<br />
-                                                Грузоподъёмность: {car.capacity > 1000 ? `${car.capacity / 1000}т` : `${car.capacity}кг`}
-                                            </div>
-                                        ))
-                                    }
-                                </Collapsible>
-                            </div>
-                        ))
+                        !filteredCars ?
+                            groupedCarsList && Object.entries(groupedCarsList).map(([brand, cars], index) => (
+                                <div key={index} className="listItem">
+                                    <Collapsible trigger={brand}>
+                                        {
+                                            cars.map((car, index) => (
+                                                <div key={car.id}>
+                                                    <span className="numeration">Машина №{index + 1}</span><br />
+                                                    Марка: {car.brand}<br />
+                                                    Гос. номер: {car.gosNumber}<br />
+                                                    Грузоподъёмность: {car.capacity > 1000 ? `${car.capacity / 1000}т` : `${car.capacity}кг`}
+                                                </div>
+                                            ))
+                                        }
+                                    </Collapsible>
+                                </div>
+                            ))
+                            :
+                            filteredCars && Object.entries(filteredCars).map(([brand, cars], index) => (
+                                <div key={index} className="listItem">
+                                    <Collapsible trigger={brand}>
+                                        {
+                                            cars.map((car, index) => (
+                                                <div key={car.id}>
+                                                    <span className="numeration">Машина №{index + 1}</span><br />
+                                                    Марка: {car.brand}<br />
+                                                    Гос. номер: {car.gosNumber}<br />
+                                                    Грузоподъёмность: {car.capacity > 1000 ? `${car.capacity / 1000}т` : `${car.capacity}кг`}
+                                                </div>
+                                            ))
+                                        }
+                                    </Collapsible>
+                                </div>
+                            ))
                     }
                 </div>
             </div>
