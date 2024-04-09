@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import axios from 'axios';
-import citiesRU from '../citiesRU.json';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 import { addCity, clearCities } from "../Store/citiesSlice";
 import { addSelectedCity, clearSelectedCities } from "../Store/selectedCitiesSlice";
 import { clear } from "../Store/drawRouteSlice";
-import { addDetail, removeDetail, clearDetails } from "../Store/routeDetailsSlice";
+import { addDetail } from "../Store/routeDetailsSlice";
 
 function MainMap() {
     return (
@@ -24,6 +23,7 @@ function InnerMap() {
     const selectedCities = useSelector(state => state.selectedCities.selectedCities);
     const drawRoute = useSelector(state => state.drawRoute.drawRoute);
     const [cities, setCities] = useState(null);
+    const [citiesRU, setCitiesRU] = useState(null);
     const [city, setCity] = useState(null);
     const [ymaps, setYMaps] = useState(null);
     const [ready, setReady] = useState(false);
@@ -56,6 +56,9 @@ function InnerMap() {
             });
         }).catch((error) => {
             console.error('Ошибка при загрузке Yandex Maps:', error);
+        });
+        axios.get("http://localhost:3001/cities").then((res) => {
+            setCitiesRU(res.data);
         });
     }, []);
 
@@ -246,7 +249,7 @@ function InnerMap() {
                 setTimeout(() => {
                     findNearCities(url).then((response) => {
                         if (response) {
-                            const filteredData = response.data.filter(city => citiesRU.some(cityRU => cityRU.wikiDataId === city.wikiDataId && cityRU.id === city.id));
+                            const filteredData = response.data.filter(city => citiesRU.some(cityRU => cityRU.wikiDataId === city.wikiDataId));
                             allData = allData.concat(filteredData);
                             let nextLink;
                             if (response.links)
