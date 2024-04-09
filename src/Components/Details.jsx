@@ -11,17 +11,28 @@ function Details() {
             <div className="detList">
                 <div className="detail">
                     <p>
-                        Грузовик: {routeDetails.car && routeDetails.car}
+                        Грузовик(и): <br />
+                        {routeDetails.car &&
+                            routeDetails.car.map((car, index) => (
+                                <div key={index} style={{ fontWeight: 400 }}>
+                                    <span>{car}</span><br />
+                                </div>
+                            ))
+                        }
                     </p>
                 </div>
                 <div className="detail">
                     <p>
-                        Расстояние: {routeDetails.duration && routeDetails.duration}
+                        Расстояние: <span style={{ fontWeight: 400 }}>
+                            {routeDetails.length && routeDetails.length}
+                        </span>
                     </p>
                 </div>
                 <div className="detail">
                     <p>
-                        Затрачиваемое время: {routeDetails.length && routeDetails.length}
+                        Затрачиваемое время: <span style={{ fontWeight: 400 }}>
+                            {routeDetails.duration && routeDetails.duration}
+                        </span>
                     </p>
                 </div>
             </div>

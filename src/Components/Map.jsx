@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ import { addDetail } from "../Store/routeDetailsSlice";
 
 function MainMap() {
     return (
-        <YMaps query={{ apikey: '' }}>
+        <YMaps>
             <div><InnerMap /></div>
         </YMaps>
     );
@@ -71,9 +71,13 @@ function InnerMap() {
                 let multiRoute = new ymaps.multiRouter.MultiRoute({
                     referencePoints: refs
                 }, {
-                    boundsAutoApply: true
-                });
+                    wayPointStartFillColor: "1c5d99ff",
+                    wayPointFinishIconFillColor: "fff",
+                    routeStrokeWidth: 2,
 
+                    boundsAutoApply: true,
+                });
+                
                 mapRef.current.geoObjects.each(function (geoObject) {
                     if (geoObject instanceof ymaps.multiRouter.MultiRoute) {
                         mapRef.current.geoObjects.remove(geoObject);
@@ -137,7 +141,9 @@ function InnerMap() {
         if (!ymaps) {
             return;
         }
-        setPlacemarkProperties(prev => ({ ...prev, iconCaption: 'поиск...' }));
+        setPlacemarkProperties(prev => ({
+            ...prev, iconCaption: 'поиск...'
+        }));
         ymaps.geocode(coords).then(function (res) {
             let firstGeoObject = res.geoObjects.get(0);
             const locality = firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas();
@@ -270,13 +276,32 @@ function InnerMap() {
         return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/places/${cityCode}/nearbyPlaces?radius=${radius}&types=CITY&distanceUnit=KM&countryIds=Q184&minPopulation=5000&languageCode=ru`);
     }
 
+    const templateLayoutFactory = useCallback(() => {
+        if (ymaps) {
+            return ymaps.templateLayoutFactory.createClass(
+                `<div style="width: 36px; height: 47px;">
+            <div class="overlay" id="overlayrTns">
+            <div class="marker"></div>
+            <div class="city">Тунис</div>
+        </div>
+                </div>`
+            );
+        }
+    }, [ymaps]);
+
     return (
         <Map width={'100%'} height={'700px'} defaultState={{ center: [53.902284, 27.561831], zoom: 7 }} instanceRef={mapRef} onClick={handleMapClick}>
             {placemarkGeometry && (
                 <Placemark
                     geometry={placemarkGeometry}
                     properties={placemarkProperties}
-                    options={{ preset: 'islands#violetDotIconWithCaption', draggable: true }}
+                    options={
+                        {
+                            // iconLayout: templateLayoutFactory(),
+                            preset: 'islands#darkBlueIcon',
+                            draggable: true
+                        }
+                    }
                     onDragEnd={handleDragEnd}
                 />
             )}

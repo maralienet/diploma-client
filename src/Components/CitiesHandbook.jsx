@@ -14,7 +14,6 @@ function CitiesHandbook() {
         axios.get("http://localhost:3001/cities").then((res) => {
             setCitiesList(res.data);
             setGroupedByRegionCitiesList(groupByRegion(res.data));
-            // setGroupedByDistrictCitiesList(groupByRegion(res.data));
         });
     }, []);
 

@@ -27,8 +27,8 @@ function Me() {
                         <div className="menuItem" onClick={() => setSelectedMngmnt('cities')}>
                             Справочник населённых пунктов
                         </div>
-                        <div className="menuItem" onClick={() => setSelectedMngmnt('')}>
-                            оао
+                        <div className="menuItem" onClick={() => setSelectedMngmnt('report')}>
+                            Создание отчётов
                         </div>
                     </div>
                 </aside>
