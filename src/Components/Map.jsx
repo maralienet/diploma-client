@@ -277,19 +277,6 @@ function InnerMap() {
         return getNextPage(`https://wft-geo-db.p.rapidapi.com/v1/geo/places/${cityCode}/nearbyPlaces?radius=${radius}&types=CITY&distanceUnit=KM&countryIds=Q184&minPopulation=5000&languageCode=ru`);
     }
 
-    const templateLayoutFactory = useCallback(() => {
-        if (ymaps) {
-            return ymaps.templateLayoutFactory.createClass(
-                `<div style="width: 36px; height: 47px;">
-            <div class="overlay" id="overlayrTns">
-            <div class="marker"></div>
-            <div class="city">Тунис</div>
-        </div>
-                </div>`
-            );
-        }
-    }, [ymaps]);
-
     return (
         <Map width={'100%'} height={'700px'} defaultState={{ center: [53.902284, 27.561831], zoom: 7 }} instanceRef={mapRef} onClick={handleMapClick}>
             {placemarkGeometry && (
@@ -298,7 +285,6 @@ function InnerMap() {
                     properties={placemarkProperties}
                     options={
                         {
-                            // iconLayout: templateLayoutFactory(),
                             preset: 'islands#darkBlueIcon',
                             draggable: true
                         }

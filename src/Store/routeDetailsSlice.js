@@ -8,15 +8,25 @@ const routeDetailsSlice = createSlice({
     reducers: {
         addDetail(state, action) {
             if (action.payload.key === 'car')
-                state.routeDetails[action.payload.key] = [action.payload.value];
+                state.routeDetails.car = [{
+                    id: action.payload.value.id,
+                    gosNumber: action.payload.value.gosNumber,
+                    brand: action.payload.value.brand,
+                    capacity: action.payload.value.capacity
+                }]
             else
                 state.routeDetails[action.payload.key] = action.payload.value;
         },
         addCarDetail(state, action) {
-            if (!state.routeDetails[action.payload.key])
-                state.routeDetails[action.payload.key] = [action.payload.value];
-            else
-                state.routeDetails[action.payload.key] = [...state.routeDetails[action.payload.key], action.payload.value];
+            if (!state.routeDetails.car) {
+                state.routeDetails.car = [];
+            }
+            state.routeDetails.car = [...state.routeDetails.car, {
+                id: action.payload.value.id,
+                gosNumber: action.payload.value.gosNumber,
+                brand: action.payload.value.brand,
+                capacity: action.payload.value.capacity
+            }]
         },
 
         removeDetail(state, action) {
@@ -24,8 +34,8 @@ const routeDetailsSlice = createSlice({
         },
 
         removeCarsDetail(state, action) {
-            state.routeDetails['car'] = state.routeDetails['car'].filter(car =>
-                car !== action.payload
+            state.routeDetails.car.id = state.routeDetails.car.filter(car =>
+                car.id !== action.payload.id
             )
         },
 

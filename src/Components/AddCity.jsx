@@ -113,7 +113,7 @@ function AddCity({ close, cityName }) {
                     <div className="resList">
                         {result &&
                             result.map(res => (
-                                <div key={res.id} className={res.name === selected.name && res.region === selected.region && res.district === selected.district ? 'active' : ''} onClick={() => { console.log(res); setSelected(res) }}>
+                                <div key={res.id} className={res.name === selected.name && res.region === selected.region && res.district === selected.district ? 'active' : ''} onClick={() => setSelected(res)}>
                                     {res.name}, {res.region}, {res.district}
                                 </div>
                             ))

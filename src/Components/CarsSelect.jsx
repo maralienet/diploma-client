@@ -6,7 +6,6 @@ import { addCarDetail, addDetail, removeCarsDetail } from "../Store/routeDetails
 
 function CarsSelect() {
     const dispatch = useDispatch();
-    const routeDetails = useSelector(state => state.routeDetails.routeDetails);
     const [cars, setCars] = useState([]);
     const [isMultiChoice, setMultiChoice] = useState(false);
 
@@ -19,14 +18,13 @@ function CarsSelect() {
     function HandleChange(car) {
         if (document.getElementById(car.gosNumber).checked) {
             if (isMultiChoice)
-                dispatch(addCarDetail({ key: 'car', value: `${car.brand} (${car.gosNumber})` }));
+                dispatch(addCarDetail({ key: 'car', value: car }));
             else
-                dispatch(addDetail({ key: 'car', value: `${car.brand} (${car.gosNumber})` }));
+                dispatch(addDetail({ key: 'car', value: car }));
         }
         else {
-            dispatch(removeCarsDetail(`${car.brand} (${car.gosNumber})`));
+            dispatch(removeCarsDetail(car.id));
         }
-        console.log(routeDetails.car)
     }
 
     return (
@@ -51,7 +49,7 @@ function CarsSelect() {
                             :
                             cars.map(car => (
                                 <div key={car.id} className="inputChkbox">
-                                    <input type="checkbox" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={(e) => { HandleChange(car) }} />
+                                    <input type="checkbox" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={(e) => HandleChange(car)} />
                                     <label htmlFor={car.gosNumber}>{`${car.brand} (${car.gosNumber})`}</label>
                                 </div>
                             ))

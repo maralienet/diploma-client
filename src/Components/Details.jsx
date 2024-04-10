@@ -15,7 +15,7 @@ function Details() {
                         {routeDetails.car &&
                             routeDetails.car.map((car, index) => (
                                 <div key={index} style={{ fontWeight: 400 }}>
-                                    <span>{car}</span><br />
+                                    <span>{car.brand} ({car.gosNumber})</span><br />
                                 </div>
                             ))
                         }

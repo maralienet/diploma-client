@@ -283,6 +283,7 @@ header {
   .results {
     align-self: flex-start;
     margin: 0 7px;
+
     &>div:first-child {
       margin-bottom: 7px;
     }
@@ -293,11 +294,13 @@ header {
         font-weight: 400;
         cursor: pointer;
         transition: 0.2s;
-        &:hover{
+
+        &:hover {
           color: $lapis-lazuli;
         }
       }
-      .active{
+
+      .active {
         color: $lapis-lazuli;
         font-weight: 500;
       }
@@ -344,6 +347,36 @@ header {
       .detList {
         p {
           margin: 10px 0 0;
+        }
+      }
+    }
+
+    .saveRoute {
+      width: 100%;
+      margin-top: 7px;
+
+      .invisible {
+        display: none;
+      }
+
+      button {
+        width: 100%;
+        background-color: $lapis-lazuli;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 1.1em;
+        padding: 15px 0;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: default;
         }
       }
     }
