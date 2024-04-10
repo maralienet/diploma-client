@@ -77,7 +77,7 @@ function InnerMap() {
 
                     boundsAutoApply: true,
                 });
-                
+
                 mapRef.current.geoObjects.each(function (geoObject) {
                     if (geoObject instanceof ymaps.multiRouter.MultiRoute) {
                         mapRef.current.geoObjects.remove(geoObject);
@@ -147,12 +147,13 @@ function InnerMap() {
         ymaps.geocode(coords).then(function (res) {
             let firstGeoObject = res.geoObjects.get(0);
             const locality = firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas();
-            setPlacemarkProperties({
-                iconCaption: locality,
-                balloonContent: locality
-            });
             if (locality[0]) {
                 let city = locality[0];
+                city = city.replace(/городской посёлок|город|агрогородок/gi, '');
+                setPlacemarkProperties({
+                    iconCaption: city,
+                    balloonContent: city
+                });
                 if (city) {
                     getCityInfo(city).then(cityInfo => {
                         setCity(cityInfo);

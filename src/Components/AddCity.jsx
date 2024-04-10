@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import ErrorMessage from './ErrorMessage';
 
-import { addSelectedCity, removeSelectedCity } from "../Store/selectedCitiesSlice";
+import { addSelectedCity } from "../Store/selectedCitiesSlice";
 
 
 function AddCity({ close, cityName }) {
@@ -64,10 +64,15 @@ function AddCity({ close, cityName }) {
 
     function handleSubmit() {
         if (selected) {
-            dispatch(addSelectedCity(selected));
+            dispatch(addSelectedCity({
+                id: selected.id,
+                name: selected.name,
+                longitude: selected.longitude,
+                latitude: selected.latitude,
+                wikiDataId: selected.wikiDataId
+            }));
         }
         else {
-            dispatch(removeSelectedCity(city));
             setError('Выберите город');
         }
     }
@@ -108,7 +113,7 @@ function AddCity({ close, cityName }) {
                     <div className="resList">
                         {result &&
                             result.map(res => (
-                                <div key={res.id} className={res.name === selected.name && res.region === selected.region && res.district === selected.district && 'active'} onClick={() => setSelected({ name: res.name, region: res.region, district: res.district })}>
+                                <div key={res.id} className={res.name === selected.name && res.region === selected.region && res.district === selected.district ? 'active' : ''} onClick={() => { console.log(res); setSelected(res) }}>
                                     {res.name}, {res.region}, {res.district}
                                 </div>
                             ))
