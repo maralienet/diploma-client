@@ -4,11 +4,15 @@ import { useDispatch } from 'react-redux';
 
 import { addSelectedCity, removeSelectedCity } from "../Store/selectedCitiesSlice";
 
+import add from '../pics/add.png';
+import AddCity from "./AddCity";
+
 function CitiesSelect() {
     const dispatch = useDispatch();
     const cities = useSelector(state => state.cities.cities);
     const [cityName, setCityName] = useState('');
     const [filteredCities, setFilteredCities] = useState(null);
+    const [isAddCity, setAddCity] = useState(null);
 
     useEffect(() => {
         let checks = Array.from(document.getElementsByClassName('citySelect'));
@@ -81,7 +85,10 @@ function CitiesSelect() {
                 {filteredCities && filteredCities.length === 0 &&
                     <div className="addCity">
                         <div>Ничего не найдено</div>
-                        <div></div>
+                        <div className="add" onClick={() => setAddCity(true)}>
+                            <img src={add} /> Добавить
+                        </div>
+                        {isAddCity && <AddCity cityName={cityName} close={() => setAddCity(false)} />}
                     </div>
                 }
             </fieldset>

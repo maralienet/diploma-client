@@ -94,6 +94,26 @@ $powder-blue: #bbcde5ff;
   }
 }
 
+@mixin closeBtn {
+  align-self: flex-end;
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+
+  svg path {
+    transition: all .1s ease-out;
+  }
+
+  &:hover {
+    svg path {
+      stroke: $lapis-lazuli;
+    }
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -178,23 +198,7 @@ header {
   border-radius: 15px;
 
   .close {
-    align-self: flex-end;
-    height: 17px;
-    width: 17px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-
-    svg path {
-      transition: all .1s ease-out;
-    }
-
-    &:hover {
-      svg path {
-        stroke: $lapis-lazuli;
-      }
-    }
+    @include closeBtn;
   }
 
   .msgText {
@@ -205,6 +209,104 @@ header {
 
   .OKBtn {
     width: 150px;
+
+    button {
+      @include simpleBtn;
+      height: 40px;
+      font-size: 1em;
+      font-weight: 400;
+    }
+  }
+}
+
+.addCityWin {
+  position: absolute;
+  z-index: 10000;
+  background-color: #fff;
+  color: $eerie-black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include centeredFlex;
+  flex-direction: column;
+  width: auto !important;
+  padding: 20px 10px;
+  border: 2px solid $powder-blue;
+  border-radius: 15px;
+
+  .close {
+    @include closeBtn;
+  }
+
+  h3 {
+    font-size: 1.27em;
+    margin: 10px 0 20px;
+  }
+
+  form {
+    display: flex;
+    gap: 10px;
+  }
+
+  .inputDiv {
+    @include inputText;
+
+    input {
+      width: 200px;
+      height: 23px;
+      line-height: 23px;
+      font-size: 0.89em;
+    }
+
+    label {
+      span {
+        margin-top: -29px;
+        font-size: 0.95em;
+      }
+
+      &:has(input:focus) {
+        span {
+          margin-top: -46.5px;
+          font-size: 0.95em;
+        }
+      }
+
+      &:has(input:not(:placeholder-shown)) {
+        span {
+          margin-top: -46.5px;
+          font-size: 0.95em;
+        }
+      }
+    }
+  }
+
+  .results {
+    align-self: flex-start;
+    margin: 0 7px;
+    &>div:first-child {
+      margin-bottom: 7px;
+    }
+
+    .resList {
+      &>div {
+        margin: 5px 0;
+        font-weight: 400;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover{
+          color: $lapis-lazuli;
+        }
+      }
+      .active{
+        color: $lapis-lazuli;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .OKBtn {
+    width: 150px;
+    margin-top: 20px;
 
     button {
       @include simpleBtn;
@@ -306,17 +408,20 @@ header {
           label {
             span {
               margin-top: -29px;
+              font-size: 0.95em;
             }
 
             &:has(input:focus) {
               span {
                 margin-top: -45px;
+                font-size: 0.95em;
               }
             }
 
             &:has(input:not(:placeholder-shown)) {
               span {
                 margin-top: -45px;
+                font-size: 0.95em;
               }
             }
           }
@@ -435,8 +540,31 @@ header {
 
       .cities,
       .cars {
-        height: 200px;
+        max-height: 200px;
         overflow: auto;
+      }
+
+      .addCity {
+        padding-left: 15px;
+        font-weight: 500;
+
+        .add {
+          cursor: pointer;
+          font-weight: 400;
+          margin: 10px 0;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+          }
+
+          &:hover {
+            color: $lapis-lazuli;
+          }
+        }
       }
     }
   }
