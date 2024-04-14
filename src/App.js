@@ -9,6 +9,17 @@ import Me from './Pages/Me';
 
 
 function App() {
+
+  document.onkeydown = function(e) {
+    if (e.keyCode == 112) {
+      console.log('F1 was pressed');
+      return false;
+    }
+    else{
+      console.log(1111)
+    }
+  }
+
   return (
     <Router>
       <header>
