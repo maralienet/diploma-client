@@ -114,6 +114,10 @@ $powder-blue: #bbcde5ff;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -124,6 +128,8 @@ body {
 header {
   position: sticky;
   top: 0;
+  z-index: 10000;
+
   &>div {
     background-color: $lapis-lazuli;
     @include centeredFlex;
@@ -599,12 +605,14 @@ header {
           }
         }
       }
-      .loading{
+
+      .loading {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: #5c5c5c;
-        img{
+
+        img {
           width: 23px;
           height: auto;
         }
@@ -791,14 +799,29 @@ header {
 
     main {
       width: 75%;
+      padding-right: 40px;
+      margin-bottom: 50px;
     }
-    .advice{
-      p{
+
+    .advice {
+      h2 {
+        margin: 30px 0 15px;
+      }
+
+      p {
         margin: 0;
+      }
+
+      &:target:before {
+        content: "";
+        display: block;
+        height: 94px;
+        margin-top: -94px;
+        visibility: hidden;
       }
     }
 
-    .highlight{
+    .highlight {
       color: $lapis-lazuli;
       background-color: #eeeeeec3;
       border-radius: 5px;
@@ -806,22 +829,31 @@ header {
     }
 
     aside {
-      width: 23%;
-      ul{
-      position: sticky;
-      top: 100px;
+      width: 25%;
+
+      ul {
+        position: sticky;
+        top: 100px;
         display: flex;
         flex-direction: column;
         gap: 10px;
         border-left: 2px solid $lapis-lazuli;
         padding: 10px;
         margin-bottom: 0;
+        list-style: none;
+        .active{
+          color: $lapis-lazuli;          
+        }
       }
 
       a {
         text-decoration: none;
         color: #000;
         transition: 0.2s;
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-size: 0.9em;
 
         &:hover {
           color: $lapis-lazuli;

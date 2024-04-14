@@ -20,9 +20,6 @@ function App() {
       document.body.removeChild(a);
       return false;
     }
-    else {
-      console.log(1111)
-    }
   }
 
   return (

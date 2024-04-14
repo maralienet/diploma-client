@@ -42,7 +42,7 @@ function CitiesSelect() {
     return (
         <div className="citySlct deliManage">
             <fieldset>
-                <div className="header" onClick={() => console.log(cities)}>
+                <div className="header">
                     Населённые пункты
                 </div>
                 <div className="search">
