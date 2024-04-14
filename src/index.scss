@@ -705,6 +705,12 @@ header {
         &:not(:last-child) {
           border-bottom: 2px solid $powder-blue;
         }
+
+        .info {
+          width: 400px;
+          display: flex;
+          justify-content: space-between;
+        }
       }
 
       .Collapsible {
