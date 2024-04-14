@@ -94,7 +94,6 @@ function CitiesSelect() {
                     }
                 </div>
                     <div className="addCity">
-                        {/* <div>Ничего не найдено</div> */}
                         <div className="add" onClick={() => setAddCity(true)}>
                             <img src={add} /> Добавить
                         </div>

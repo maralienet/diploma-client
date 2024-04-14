@@ -122,6 +122,8 @@ body {
 }
 
 header {
+  position: sticky;
+  top: 0;
   &>div {
     background-color: $lapis-lazuli;
     @include centeredFlex;
@@ -789,12 +791,25 @@ header {
 
     main {
       width: 75%;
+    }
+    .advice{
+      p{
+        margin: 0;
+      }
+    }
 
+    .highlight{
+      color: $lapis-lazuli;
+      background-color: #eeeeeec3;
+      border-radius: 5px;
+      padding: 0 5px;
     }
 
     aside {
       width: 23%;
       ul{
+      position: sticky;
+      top: 100px;
         display: flex;
         flex-direction: column;
         gap: 10px;
