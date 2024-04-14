@@ -9,7 +9,7 @@ import { addSelectedCity } from "../Store/selectedCitiesSlice";
 function AddCity({ close, cityName }) {
     const dispatch = useDispatch();
     const [citiesList, setCitiesList] = useState([]);
-    const [city, setCity] = useState(cityName);
+    const [city, setCity] = useState('');
     const [region, setRegion] = useState('');
     const [district, setDistrict] = useState('');
     const [result, setResult] = useState('');
@@ -19,6 +19,7 @@ function AddCity({ close, cityName }) {
     useEffect(() => {
         axios.get("http://localhost:3001/cities").then((res) => {
             setCitiesList(res.data);
+            setCity(cityName);
         });
     });
 
@@ -71,6 +72,7 @@ function AddCity({ close, cityName }) {
                 latitude: selected.latitude,
                 wikiDataId: selected.wikiDataId
             }));
+            close();
         }
         else {
             setError('Выберите город');

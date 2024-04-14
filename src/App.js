@@ -6,16 +6,21 @@ import Header from './Components/Header';
 import Main from './Pages/Main';
 import Authorization from './Pages/Authorization';
 import Me from './Pages/Me';
+import Help from './Pages/Help';
 
 
 function App() {
 
-  document.onkeydown = function(e) {
+  document.onkeydown = function (e) {
     if (e.keyCode == 112) {
-      console.log('F1 was pressed');
+      var a = document.createElement('a');
+      a.href = '/help';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       return false;
     }
-    else{
+    else {
       console.log(1111)
     }
   }
@@ -29,6 +34,7 @@ function App() {
         <Route exact path='/' element={<Main />} />
         <Route exact path='/authorization' element={<Authorization />} />
         <Route exact path='/me' element={<Me />} />
+        <Route exact path='/help' element={<Help />} />
       </Routes>
     </Router>
   );

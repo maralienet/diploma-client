@@ -5,18 +5,20 @@ import { useDispatch } from 'react-redux';
 import { addSelectedCity, removeSelectedCity } from "../Store/selectedCitiesSlice";
 
 import add from '../pics/add.png';
+import loading from '../pics/loading.gif';
 import AddCity from "./AddCity";
 
 function CitiesSelect() {
     const dispatch = useDispatch();
     const cities = useSelector(state => state.cities.cities);
+    const selectedCities = useSelector(state => state.selectedCities.selectedCities);
     const [cityName, setCityName] = useState('');
     const [filteredCities, setFilteredCities] = useState(null);
     const [isAddCity, setAddCity] = useState(null);
 
     useEffect(() => {
         let checks = Array.from(document.getElementsByClassName('citySelect'));
-        checks.forEach((item) => item.checked = false)
+        checks.forEach((item) => item.checked = false);
     });
 
     function handleChange(city) {
@@ -54,6 +56,15 @@ function CitiesSelect() {
                 </div>
                 <div className="cities">
                     {
+                        cities.length === 0 && selectedCities.length === 1 &&
+                        <div className="loading">
+                            <img src={loading} />
+                            <span>
+                                Поиск...
+                            </span>
+                        </div>
+                    }
+                    {
                         !filteredCities ?
                             cities.map((city) => (
                                 <div key={city.id} className="inputChkbox">
@@ -82,15 +93,14 @@ function CitiesSelect() {
                             ))
                     }
                 </div>
-                {filteredCities && filteredCities.length === 0 &&
                     <div className="addCity">
-                        <div>Ничего не найдено</div>
+                        {/* <div>Ничего не найдено</div> */}
                         <div className="add" onClick={() => setAddCity(true)}>
                             <img src={add} /> Добавить
                         </div>
                         {isAddCity && <AddCity cityName={cityName} close={() => setAddCity(false)} />}
                     </div>
-                }
+
             </fieldset>
         </div>
     );

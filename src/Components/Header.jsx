@@ -16,20 +16,21 @@ function Header() {
                     <span>Построение маршрута доставки</span>
                 </div>
             </a>
-            {
-                !id ?
-                    <a className="right" href="/authorization">
-                        <div className="auth">
-                            <button>Вход</button>
-                        </div>
-                    </a>
-                    :
-                    <a className="right" href="/me">
-                        <div className="auth">
-                            <button>Личный кабиинет</button>
-                        </div>
-                    </a>
-            }
+            <div className="right">
+                <a href="/help">
+                    Помощь
+                </a>
+                {
+                    !id ?
+                        <a href="/authorization">
+                            Вход
+                        </a>
+                        :
+                        <a href="/me">
+                            Личный кабинет
+                        </a>
+                }
+            </div>
         </div>
     );
 }
