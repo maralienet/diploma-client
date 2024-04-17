@@ -4,7 +4,7 @@ const drawRouteSlice = createSlice({
     name: 'drawRoute',
     initialState: {
         drawRoute: {
-            draw: true,
+            draw: false,
             clear: false
         }
     },

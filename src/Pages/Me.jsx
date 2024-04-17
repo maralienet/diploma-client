@@ -17,11 +17,23 @@ function Me() {
         });
     }, []);
 
+    function exit(){
+        var cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            document.location = ('/');
+        }
+    }
+
     const managementComponents = {
         'cities': <CitiesHandbook />,
         'cars': <CarsHandbook />,
         'carstat': <CarsStats />,
-        'routestat': <RoutesStats/>,
+        'routestat': <RoutesStats />,
     };
 
     return (
@@ -47,6 +59,9 @@ function Me() {
                         <div className="menuItem" onClick={() => setSelectedMngmnt('report')}>
                             Создание отчётов
                         </div>
+                    </div>
+                    <div className="exit" onClick={() => exit()}>
+                        Выход
                     </div>
                 </aside>
                 <main>

@@ -59,7 +59,7 @@ function SaveRoute() {
     return (
         <>
             <div className="saveRoute">
-                <button className={!drawRoute.draw ? "invisible" : ''} disabled={!isUnique ? 'disabled' : ''} onClick={() => handleSave()}>Сохранить маршрут</button>
+                <button className={!drawRoute.draw ? "invisible" : ''} disabled={!isUnique ? 'disabled' : ''} type='button' onClick={() => handleSave()}>Сохранить маршрут</button>
             </div>
             {saved && <ErrorMessage msg='Маршрут сохранён успешно' close={() => setSaved(false)} />}
         </>

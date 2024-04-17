@@ -19,7 +19,8 @@ function CitiesSelect() {
     useEffect(() => {
         let checks = Array.from(document.getElementsByClassName('citySelect'));
         checks.forEach((item) => item.checked = false);
-    });
+        console.log(cities)
+    }, []);
 
     function handleChange(city) {
         if (document.getElementById(city.wikiDataId).checked) {
@@ -93,13 +94,14 @@ function CitiesSelect() {
                             ))
                     }
                 </div>
+                {selectedCities.length >= 1 && cities.length > 0 &&
                     <div className="addCity">
                         <div className="add" onClick={() => setAddCity(true)}>
                             <img src={add} /> Добавить
                         </div>
                         {isAddCity && <AddCity cityName={cityName} close={() => setAddCity(false)} />}
                     </div>
-
+                }
             </fieldset>
         </div>
     );

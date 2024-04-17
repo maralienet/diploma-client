@@ -699,6 +699,21 @@ header {
     }
   }
 
+  .exit {
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 25px 0 25px 15px;
+    border: 2px solid $powder-blue;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 1.1em;
+
+    &:hover {
+      color: $lapis-lazuli;
+    }
+  }
+
   .manage {
     border: 2px solid $powder-blue;
     border-radius: 15px;
@@ -841,8 +856,9 @@ header {
         padding: 10px;
         margin-bottom: 0;
         list-style: none;
-        .active{
-          color: $lapis-lazuli;          
+
+        .active {
+          color: $lapis-lazuli;
         }
       }
 
