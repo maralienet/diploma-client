@@ -8,8 +8,14 @@ function SaveRoute() {
     const selectedCities = useSelector(state => state.selectedCities.selectedCities);
     const drawRoute = useSelector(state => state.drawRoute.drawRoute);
     const [isUnique, setUnique] = useState(true);
-    const code = generateCode();
+    const [codes, setCodes] = useState([]);
     const [saved, setSaved] = useState(false);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/routings/codes').then((res) => {
+            setCodes(res.data);
+        })
+    });
 
     function handleSave() {
         let cars = routeDetails.car;
@@ -20,6 +26,7 @@ function SaveRoute() {
         let cities = route.map((item, index) => `${++index}. ${item.name}`).join(' ');
 
         if (cars && route.length && length && duration) {
+            const code = generateCode();
             cars.forEach(car => {
                 axios.post('http://localhost:3001/routings', {
                     routeId: code,
@@ -53,7 +60,13 @@ function SaveRoute() {
             letters += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
         }
         // Возвращение сгенерированного шифра
-        return numbers + letters;
+        let cod = numbers + letters;
+        for (let i = 0; i < codes.length; i++) {
+            if (codes[i] === cod) {
+                return generateCode(); // Рекурсивный вызов с оператором return
+            }
+        }
+        return cod;
     }
 
     return (

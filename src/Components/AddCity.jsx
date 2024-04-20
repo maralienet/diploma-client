@@ -21,20 +21,20 @@ function AddCity({ close, cityName }) {
             setCitiesList(res.data);
             setCity(cityName);
         });
-    });
+    },[]);
 
     useEffect(() => {
-        //only city
+        //только city
         if (city !== '' && district === '' && region === '') {
             let filter = citiesList.filter(_city => _city.name.toLowerCase().startsWith(city.toLowerCase()));
             setResult(filter);
         }
-        //only region
+        //только region
         else if (region !== '' && city === '' && district === '') {
             let filter = citiesList.filter(_city => _city.region.toLowerCase().startsWith(region.toLowerCase()));
             setResult(filter);
         }
-        //only dist
+        //только dist
         else if (district !== '' && city === '' && region === '') {
             let filter = citiesList.filter(_city => _city.district.toLowerCase().startsWith(district.toLowerCase()));
             setResult(filter);
@@ -54,7 +54,7 @@ function AddCity({ close, cityName }) {
             let filter = citiesList.filter(_city => _city.region.toLowerCase().startsWith(region.toLowerCase()) && _city.district.toLowerCase().startsWith(district.toLowerCase()));
             setResult(filter);
         }
-        //all in
+        //всё сразу
         else if (district !== '' && city !== '' && region !== '') {
             let filter = citiesList.filter(_city => _city.name.toLowerCase().startsWith(city.toLowerCase()) && _city.region.toLowerCase().startsWith(region.toLowerCase()) && _city.district.toLowerCase().startsWith(district.toLowerCase()));
             setResult(filter);

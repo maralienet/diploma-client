@@ -126,18 +126,18 @@ function InnerMap() {
         }
     }, [city]);
 
-    const handleMapClick = (e) => {
+    function handleMapClick(e) {
         const coords = e.get('coords');
         setPlacemarkGeometry(coords);
         getAddress(coords);
     };
 
-    const handleDragEnd = (e) => {
+    function handleDragEnd(e) {
         const coords = e.originalEvent.target.geometry.getCoordinates();
         getAddress(coords);
     };
 
-    const getAddress = (coords) => {
+    function getAddress(coords) {
         if (!ymaps) {
             return;
         }

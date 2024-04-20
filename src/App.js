@@ -11,16 +11,20 @@ import Help from './Pages/Help';
 
 function App() {
 
-  document.onkeydown = function (e) {
+  function openHelp(e) {
     if (e.keyCode == 112) {
       var a = document.createElement('a');
       a.href = '/help';
+      a.target = '_blank';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       return false;
     }
   }
+
+  document.onkeydown = (e) => openHelp(e);
+
 
   return (
     <Router>
