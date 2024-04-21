@@ -19,18 +19,20 @@ function Authorization() {
     function handleSubmimt(e) {
         e.preventDefault();
         let user = usersList.filter(user => user.login === login);
-        if (user) {
+        if (user && pass !== '') {
             user = user[0];
-            if (user.password === pass) {
+            setLoginError('');
+            if (user !== undefined && user.password === pass) {
                 let date = new Date();
                 date.setTime(date.getTime() + (3 * 60 * 60 * 1000));
                 let expires = "; expires=" + date.toUTCString();
                 document.cookie = "userid=" + user.id + expires + "; path=/";
                 navigate(`/me`);
+                setPassError('');
             }
-            else setPassError('Пароль не верный');
+            else setPassError('Пароль неверный');
         }
-        else setLoginError('Логин не верный');
+        else setLoginError('Логин неверный');
     }
 
     return (
@@ -44,12 +46,14 @@ function Authorization() {
                                 <input type="text" placeholder="Логин" minLength={2} maxLength={20} onChange={(e) => setLogin(e.target.value)} />
                                 <span>Логин</span>
                             </label>
+                            <span className={loginError ? "error" : ''}>{loginError}</span>
                         </div>
                         <div className="inputDiv">
                             <label>
                                 <input type="password" placeholder="Пароль" maxLength={8} onChange={(e) => setPass(e.target.value)} />
                                 <span>Пароль</span>
                             </label>
+                            <span className={passError ? "error" : ''}>{passError}</span>
                         </div>
                         <div className="submit">
                             <button type="submit">Войти</button>

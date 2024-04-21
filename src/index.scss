@@ -643,6 +643,15 @@ header {
 
       .inputDiv {
         @include inputText;
+        &:has(.error){
+          input{
+            border-color: #d00000;
+            border-width: 2px;
+          }
+          span{
+            color: #d00000 !important;
+          }
+        }
       }
 
       .submit {
@@ -651,6 +660,10 @@ header {
           font-size: 1.2em;
           font-weight: 400;
         }
+      }
+      .error{
+        color: #d00000;
+        font-size: 0.9em;
       }
     }
   }
