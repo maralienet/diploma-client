@@ -29,6 +29,11 @@ $powder-blue: #bbcde5ff;
   &:hover {
     background-color: mix(#fff, $lapis-lazuli, 45%);
   }
+
+  &:disabled {
+    cursor: default;
+    background-color: rgb(160, 175, 196);
+  }
 }
 
 @mixin centeredFlex {
@@ -643,12 +648,14 @@ header {
 
       .inputDiv {
         @include inputText;
-        &:has(.error){
-          input{
+
+        &:has(.error) {
+          input {
             border-color: #d00000;
             border-width: 2px;
           }
-          span{
+
+          span {
             color: #d00000 !important;
           }
         }
@@ -661,7 +668,8 @@ header {
           font-weight: 400;
         }
       }
-      .error{
+
+      .error {
         color: #d00000;
         font-size: 0.9em;
       }
@@ -809,6 +817,41 @@ header {
                 border-bottom: 2px solid $powder-blue;
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  .createReports {
+    .body {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      &>div {
+        width: 50%;
+        .btns {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          .defineDates {
+            border: 2px solid $powder-blue;
+            background-color: transparent;
+
+            &:hover {
+              border-color: white;
+            }
+          }
+
+          button {
+            @include simpleBtn;
+            font-size: 0.94em;
+            width: 150px;
+            height: 40px;
+            margin: 5px 0 15px;
+            border: none;
           }
         }
       }

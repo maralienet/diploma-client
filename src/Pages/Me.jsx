@@ -5,6 +5,7 @@ import CarsHandbook from "../Components/CarsHandbook";
 import CitiesHandbook from "../Components/CitiesHandbook";
 import CarsStats from "../Components/CarsStats";
 import RoutesStats from "../Components/RoutesStats";
+import CreateReports from "../Components/CreateReports";
 
 function Me() {
     const id = useCookie('userid');
@@ -17,7 +18,7 @@ function Me() {
         });
     }, []);
 
-    function exit(){
+    function exit() {
         var cookies = document.cookie.split(";");
 
         for (var i = 0; i < cookies.length; i++) {
@@ -34,6 +35,7 @@ function Me() {
         'cars': <CarsHandbook />,
         'carstat': <CarsStats />,
         'routestat': <RoutesStats />,
+        'report': <CreateReports />,
     };
 
     return (
