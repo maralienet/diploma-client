@@ -8,7 +8,7 @@ function Header() {
 
     return (
         <div>
-            <a className="left" href="/">
+            <a className="left" href="/main">
                 <div className="logo">
                     <img src={logo} alt="logo" />
                 </div>
@@ -22,7 +22,7 @@ function Header() {
                 </a>
                 {
                     !id ?
-                        <a href="/authorization">
+                        <a href="/">
                             Вход
                         </a>
                         :

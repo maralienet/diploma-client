@@ -27,7 +27,7 @@ function Authorization() {
                 date.setTime(date.getTime() + (3 * 60 * 60 * 1000));
                 let expires = "; expires=" + date.toUTCString();
                 document.cookie = "userid=" + user.id + expires + "; path=/";
-                navigate(`/me`);
+                navigate(`/main`);
                 setPassError('');
             }
             else setPassError('Пароль неверный');

@@ -35,7 +35,9 @@ function CarReport() {
                     a.click();
                     a.remove();
                 })
-                .catch(error => console.error(error));
+                .catch(error => {
+                    setError('Данных за этот период нет');
+                });
         }
     }
     function handleFromDateChange(e) {
@@ -62,7 +64,7 @@ function CarReport() {
                 <span>Отчёт за текущий месяц</span>
                 <button onClick={() => saveReport(false)}>Скачать</button>
                 <span>Отчёт за определённый период</span>
-                <button className="defineDates" onClick={() => setChoose(!choose)}>Определить даты</button>
+                <button className="defineDates" type='button' onClick={() => setChoose(!choose)}>Определить даты</button>
                 {choose &&
                     <>
                         <div className="dates">
@@ -75,7 +77,7 @@ function CarReport() {
                                 <input type="date" id='to' min={dates[0]} onChange={(e) => handleToDateChange(e)} />
                             </div>
                         </div>
-                        <button disabled={dates.includes(null) ? 'disabled' : ''} onClick={() => saveReport(true)}>Скачать</button>
+                        <button disabled={dates.includes(null) ? 'disabled' : ''} type='button' onClick={() => saveReport(true)}>Скачать</button>
                     </>
                 }
             </div>

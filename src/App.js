@@ -32,9 +32,9 @@ function App() {
         <Header />
       </header>
       <Routes>
-        <Route exact path='/' element={<Main />} />
-        <Route exact path='/authorization' element={<Authorization />} />
+        <Route exact path='/' element={<Authorization />} />
         <Route exact path='/me' element={<Me />} />
+        <Route exact path='/main' element={<Main />} />
         <Route exact path='/help' element={<Help />} />
       </Routes>
     </Router>
