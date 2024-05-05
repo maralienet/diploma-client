@@ -66,7 +66,7 @@ function CarsStats() {
                     {
                         !filteredCars ?
                             carsList && carsList.map(car => (
-                                <div key={car.id} className="listItem" onClick={() => handleClick(car.id)}>
+                                <div key={car.id} className="listItem" onClick={() => {console.log(car.id);handleClick(car.id)}}>
                                     <Collapsible trigger={`${car.brand} (${car.gosNumber})`}>
                                         <div className="info">
                                             <span>Маршрутов проехано: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
