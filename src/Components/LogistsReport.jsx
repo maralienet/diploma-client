@@ -3,19 +3,20 @@ import axios from "axios";
 
 import ErrorMessage from "./ErrorMessage";
 
-function RoutesReport() {
+function LogistsReport(){
     const [dates, setDates] = useState([null, null]);
     const [choose, setChoose] = useState(false);
     const [error, setError] = useState('');
     const today = formatDate(new Date());
     function saveReport(isPeriod) {
         if (isPeriod) {
-            axios.get(`http://localhost:3001/pdf/routes/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
+            axios.get(`http://localhost:3001/pdf/logists/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
                 .then(response => {
+                    console.log(response.data)
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `Отчёт по маршрутам ${today}.pdf`;
+                    a.download = `Отчёт по работе логистов ${today}.pdf`;
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
@@ -25,12 +26,12 @@ function RoutesReport() {
                 });
         }
         else {
-            axios.get(`http://localhost:3001/pdf/routes/month`, { responseType: 'blob' })
+            axios.get(`http://localhost:3001/pdf/logists/month`, { responseType: 'blob' })
                 .then(response => {
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `Отчёт по маршрутам ${today}.pdf`;
+                    a.download = `Отчёт по работе логистов ${today}.pdf`;
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
@@ -55,12 +56,12 @@ function RoutesReport() {
     return (
         <div>
             {error !== '' && <ErrorMessage msg={error} close={() => setError('')} />}
-            <h4>Отчёт по маршрутам</h4>
+            <h4>Отчёт по работе логистов</h4>
             <div className="btns">
                 <span>Отчёт за текущий месяц</span>
                 <button onClick={() => saveReport(false)}>Скачать</button>
                 <span>Отчёт за определённый период</span>
-                <button type='button' className="defineDates" onClick={() => setChoose(!choose)}>Определить даты</button>
+                <button className="defineDates" type='button' onClick={() => setChoose(!choose)}>Определить даты</button>
                 {choose &&
                     <>
                         <div className="dates">
@@ -81,4 +82,4 @@ function RoutesReport() {
     );
 }
 
-export default RoutesReport;
+export default LogistsReport;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ErrorMessage({ type, msg, close }) {
+function ErrorMessage({ msg, close }) {
     return (
         <div className="overlay">
             <div className="errorMsg">

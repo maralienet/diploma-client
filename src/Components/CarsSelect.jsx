@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addCarDetail, addDetail, removeCarsDetail } from "../Store/routeDetailsSlice";
 
@@ -10,12 +10,12 @@ function CarsSelect() {
     const [isMultiChoice, setMultiChoice] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/cars`).then((res) => {
+        axios.get(`http://localhost:3001/cars?active=true`).then((res) => {
             setCars(res.data);
         });
     }, []);
 
-    function HandleChange(car) {
+    function handleChange(car) {
         if (document.getElementById(car.gosNumber).checked) {
             if (isMultiChoice)
                 dispatch(addCarDetail({ key: 'car', value: car }));
@@ -42,14 +42,14 @@ function CarsSelect() {
                         !isMultiChoice ?
                             cars.map(car => (
                                 <div key={car.id} className="inputRadio">
-                                    <input type="radio" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={() => HandleChange(car)} />
+                                    <input type="radio" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={() => handleChange(car)} />
                                     <label htmlFor={car.gosNumber}>{`${car.brand} (${car.gosNumber})`}</label>
                                 </div>
                             ))
                             :
                             cars.map(car => (
                                 <div key={car.id} className="inputChkbox">
-                                    <input type="checkbox" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={(e) => HandleChange(car)} />
+                                    <input type="checkbox" className="carSelect" name='car' id={car.gosNumber} value={`${car.brand} (${car.gosNumber})`} onChange={(e) => handleChange(car)} />
                                     <label htmlFor={car.gosNumber}>{`${car.brand} (${car.gosNumber})`}</label>
                                 </div>
                             ))

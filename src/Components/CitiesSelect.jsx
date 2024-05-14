@@ -19,7 +19,6 @@ function CitiesSelect() {
     useEffect(() => {
         let checks = Array.from(document.getElementsByClassName('citySelect'));
         checks.forEach((item) => item.checked = false);
-        console.log(cities)
     }, []);
 
     function handleChange(city) {

@@ -23,6 +23,13 @@ function Details() {
                 </div>
                 <div className="detail">
                     <p>
+                        Вес груза: <span style={{ fontWeight: 400 }}>
+                        {routeDetails.weight && `${routeDetails.weight} кг`}
+                        </span>
+                    </p>
+                </div>
+                <div className="detail">
+                    <p>
                         Расстояние: <span style={{ fontWeight: 400 }}>
                             {routeDetails.length && routeDetails.length}
                         </span>

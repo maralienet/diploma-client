@@ -55,6 +55,16 @@ function AdviceList() {
                     Как узнать статистику грузовика или маршрута?
                 </a>
             </li>
+            <li onClick={() => setActive('adv11')}>
+                <a className={active === 'adv11' ? 'active' : ''} href='#adv11'>
+                    Как создать отчёт?
+                </a>
+            </li>
+            <li onClick={() => setActive('adv12')}>
+                <a className={active === 'adv12' ? 'active' : ''} href='#adv12'>
+                    Как выбрать конкретные даты для отчёта?
+                </a>
+            </li>
         </ul>
     );
 }

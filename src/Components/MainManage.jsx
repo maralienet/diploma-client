@@ -5,13 +5,15 @@ import CitiesSelect from './CitiesSelect';
 import RouteCities from "./RouteCities";
 
 import ManageBtns from "./ManageBtns";
+import WeightSelect from "./WeightSelect";
 
 function MainManage() {
     return (
         <div className="mainManage">
             <ManageBtns />
-            <CarsSelect />
             <DateSelect />
+            <WeightSelect />
+            <CarsSelect />
             <CitiesSelect />
             <RouteCities />
         </div>

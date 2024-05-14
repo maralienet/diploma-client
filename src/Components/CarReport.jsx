@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import ErrorMessage from "./ErrorMessage";
@@ -21,7 +21,7 @@ function CarReport() {
                     a.click();
                     a.remove();
                 })
-                .catch(error => {
+                .catch(() => {
                     setError('Данных за этот период нет');
                 });
         }
@@ -36,7 +36,7 @@ function CarReport() {
                     a.click();
                     a.remove();
                 })
-                .catch(error => {
+                .catch(() => {
                     setError('Данных за этот период нет');
                 });
         }
@@ -49,18 +49,14 @@ function CarReport() {
         setDates([dates[0], e.target.value]);
     };
     function formatDate(date) {
-        var dd = date.getDate();
-        if (dd < 10) dd = '0' + dd;
-        var mm = date.getMonth() + 1;
-        if (mm < 10) mm = '0' + mm;
-        var yy = date.getFullYear();
-        return dd + '.' + mm + '.' + yy;
+        let moment = require('moment');
+        return moment(date).format('DD.MM.YYYY');
     }
 
     return (
         <div>
             {error !== '' && <ErrorMessage msg={error} close={() => setError('')} />}
-            <h4>Отчёт по маршрутам грузовиков</h4>
+            <h4>Отчёт по грузовикам</h4>
             <div className="btns">
                 <span>Отчёт за текущий месяц</span>
                 <button onClick={() => saveReport(false)}>Скачать</button>
@@ -69,11 +65,11 @@ function CarReport() {
                 {choose &&
                     <>
                         <div className="dates">
-                            <div>
+                            <div className='dateInput'>
                                 <label htmlFor='from'>Начальное число: </label>
                                 <input type="date" id='from' max={dates[1]} onChange={(e) => handleFromDateChange(e)} />
                             </div>
-                            <div>
+                            <div className='dateInput'>
                                 <label htmlFor="to">Конечное число: </label>
                                 <input type="date" id='to' min={dates[0]} onChange={(e) => handleToDateChange(e)} />
                             </div>

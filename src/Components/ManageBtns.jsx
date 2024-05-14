@@ -1,6 +1,5 @@
-import React, { useEffect,useState } from "react";
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 import { draw, clear } from "../Store/drawRouteSlice";
 import { clearDetails } from "../Store/routeDetailsSlice";
@@ -14,23 +13,29 @@ function ManageBtns() {
     const routeDetails = useSelector(state => state.routeDetails.routeDetails);
     const selectedCities = useSelector(state => state.selectedCities.selectedCities);
     const drawRoute = useSelector(state => state.drawRoute.drawRoute);
-
+    const scedule = useSelector(state => state.scedule.scedule);
     const [error, setError] = useState('');
 
     function handleDraw() {
         if (routeDetails !== null) {
-            if (routeDetails.car && selectedCities.length > 0){
+            if (routeDetails.car && routeDetails.weight && selectedCities.length > 0 && (scedule.dateFrom && scedule.timeFrom)) {
                 dispatch(draw());
                 setError('');
             }
-            else if(!routeDetails.car && selectedCities.length > 0){
+            else if (!routeDetails.car && routeDetails.weight && selectedCities.length > 0 && (scedule.dateFrom && scedule.timeFrom)) {
                 setError('Выберите грузовик для доставки');
             }
-            else if(!selectedCities.length > 0 && routeDetails.car){
+            else if (!selectedCities.length > 0 && routeDetails.car && routeDetails.weight && (scedule.dateFrom && scedule.timeFrom)) {
                 setError('Выберите города для доставки');
             }
+            else if (selectedCities.length > 0 && routeDetails.car && routeDetails.weight && !(scedule.dateFrom && scedule.timeFrom)) {
+                setError('Выберите дату доставки');
+            }
+            else if (selectedCities.length > 0 && routeDetails.car && !routeDetails.weight && (scedule.dateFrom && scedule.timeFrom)) {
+                setError('Выберите вес груза доставки');
+            }
             else {
-                setError('Выберите грузовик и города для доставки');
+                setError('Выберите грузовик, дату доставки, вес груза и города для доставки');
             }
         }
     }
@@ -58,19 +63,19 @@ function ManageBtns() {
 
     return (
         <>
-        {error!=='' && <ErrorMessage msg={error} close={() => setError('')}/>}
-        <div className="manageBtns">
-            <div>
-                <button className="drawRoutes" type="button" onClick={() => handleDraw()}>
-                    Построить маршрут
-                </button>
+            {error !== '' && <ErrorMessage msg={error} close={() => setError('')} />}
+            <div className="manageBtns">
+                <div>
+                    <button className="drawRoutes" type="button" onClick={() => handleDraw()}>
+                        Построить маршрут
+                    </button>
+                </div>
+                <div>
+                    <button className="drawRoutes" type="button" onClick={() => handleClear()}>
+                        Сбросить
+                    </button>
+                </div>
             </div>
-            <div>
-                <button className="drawRoutes" type="button" onClick={() => handleClear()}>
-                    Сбросить
-                </button>
-            </div>
-        </div>
         </>
     );
 }

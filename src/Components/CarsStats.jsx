@@ -66,7 +66,7 @@ function CarsStats() {
                     {
                         !filteredCars ?
                             carsList && carsList.map(car => (
-                                <div key={car.id} className="listItem" onClick={() => {console.log(car.id);handleClick(car.id)}}>
+                                <div key={car.id} className="listItem" onClick={() => handleClick(car.id)}>
                                     <Collapsible trigger={`${car.brand} (${car.gosNumber})`}>
                                         <div className="info">
                                             <span>Маршрутов проехано: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
@@ -88,7 +88,7 @@ function CarsStats() {
                             ))
 
                             :
-                            filteredCars && filteredCars.map(car => (
+                            filteredCars.length>0 ? filteredCars.map(car => (
                                 <div key={car.id} className="listItem" onClick={() => handleClick(car.id)}>
                                     <Collapsible trigger={`${car.brand} (${car.gosNumber})`}>
                                         <div className="info">
@@ -109,6 +109,7 @@ function CarsStats() {
                                     </Collapsible>
                                 </div>
                             ))
+                            : <div className="nthFound">Ничего не найдено</div>
                     }
                 </div>
             </div >

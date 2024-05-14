@@ -3,10 +3,10 @@ import axios from "axios";
 import Collapsible from 'react-collapsible';
 
 function RoutesStats() {
-    const [number, setNumber] = useState(null);
-    const [routesList, setRoutesList] = useState(null);
-    const [filterdRoutesList, setFilterdRoutesList] = useState(null);
-    const [carsList, setCarsList] = useState(null);
+    const [number, setNumber] = useState('');
+    const [routesList, setRoutesList] = useState([]);
+    const [filterdRoutesList, setFilterdRoutesList] = useState([]);
+    const [carsList, setCarsList] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:3001/cars").then((res) => {
@@ -18,7 +18,7 @@ function RoutesStats() {
     }, []);
 
     useEffect(() => {
-        if (number) {
+        if (number !== '') {
             let filter = routesList.filter(route => route.routeId.toLowerCase().startsWith(number.toLowerCase()));
             filter = setFilterdRoutesList(filter);
         }
@@ -35,8 +35,8 @@ function RoutesStats() {
                 <div className="search">
                     <div className="inputDiv">
                         <label>
-                            <input type="text" placeholder="Номер" onChange={(e) => setNumber(e.target.value)} />
-                            <span>Номер</span>
+                            <input type="text" placeholder="Код маршрута" onChange={(e) => setNumber(e.target.value)} />
+                            <span>Код маршрута</span>
                         </label>
                     </div>
                 </div>
@@ -57,12 +57,14 @@ function RoutesStats() {
                                             <br />
                                             Маршрут: {route.route}<br />
                                             Расстояние: {route.length} км<br />
+                                            Продолжительность: {route.duration}<br />
+                                            Вес груза: {route.weight} кг<br />
                                         </div>
                                     </Collapsible>
                                 </div>
                             ))
                             :
-                            filterdRoutesList && filterdRoutesList.map(route => (
+                            filterdRoutesList.length > 0 ? filterdRoutesList.map(route => (
                                 <div key={route.id} className="listItem">
                                     <Collapsible trigger={`Маршрут ${route.routeId}`}>
                                         <div>
@@ -76,10 +78,13 @@ function RoutesStats() {
                                             <br />
                                             Маршрут: {route.route}<br />
                                             Расстояние: {route.length} км<br />
+                                            Продолжительность: {route.duration}<br />
+                                            Вес груза: {route.weight} кг<br />
                                         </div>
                                     </Collapsible>
                                 </div>
                             ))
+                                : <div className="nthFound">Ничего не найдено</div>
                     }
                 </div>
             </div>

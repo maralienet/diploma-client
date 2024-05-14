@@ -6,6 +6,7 @@ import Header from './Components/Header';
 import Main from './Pages/Main';
 import Authorization from './Pages/Authorization';
 import Me from './Pages/Me';
+import Admin from './Pages/Admin';
 import Help from './Pages/Help';
 
 
@@ -25,7 +26,6 @@ function App() {
 
   document.onkeydown = (e) => openHelp(e);
 
-
   return (
     <Router>
       <header>
@@ -34,6 +34,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Authorization />} />
         <Route exact path='/me' element={<Me />} />
+        <Route exact path='/admin' element={<Admin />} />
         <Route exact path='/main' element={<Main />} />
         <Route exact path='/help' element={<Help />} />
       </Routes>

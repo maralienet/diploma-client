@@ -4,6 +4,7 @@ import citiesReducer from './citiesSlice'
 import selectedCitiesReducer from './selectedCitiesSlice';
 import drawRouteReducer from './drawRouteSlice';
 import routeDetailsReducer from './routeDetailsSlice';
+import sceduleReducer from './sceduleSlice';
 
 export default configureStore({
     reducer: {
@@ -11,5 +12,6 @@ export default configureStore({
         selectedCities: selectedCitiesReducer,
         drawRoute: drawRouteReducer,
         routeDetails: routeDetailsReducer,
+        scedule: sceduleReducer,
     }
 })

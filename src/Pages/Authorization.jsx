@@ -11,7 +11,7 @@ function Authorization() {
     const [passError, setPassError] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:3001/users").then((res) => {
+        axios.get("http://localhost:3001/users?active=true").then((res) => {
             setUserList(res.data)
         });
     }, []);
@@ -27,12 +27,15 @@ function Authorization() {
                 date.setTime(date.getTime() + (3 * 60 * 60 * 1000));
                 let expires = "; expires=" + date.toUTCString();
                 document.cookie = "userid=" + user.id + expires + "; path=/";
-                navigate(`/main`);
+                if (user.role === 2)
+                    navigate(`/main`);
+                if (user.role === 1)
+                    navigate(`/admin`);
                 setPassError('');
             }
             else setPassError('Пароль неверный');
         }
-        else setLoginError('Логин неверный');
+        else setLoginError('Пользователь не существует');
     }
 
     return (

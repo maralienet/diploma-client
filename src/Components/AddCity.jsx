@@ -78,8 +78,7 @@ function AddCity({ close, cityName }) {
             setError('Выберите город');
         }
     }
-
-
+    
     return (
         <div className="overlay">
             <div className="addCityWin">

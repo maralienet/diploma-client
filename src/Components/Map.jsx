@@ -3,6 +3,7 @@ import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import ErrorMessage from "./ErrorMessage";
 
 import { addCity, clearCities } from "../Store/citiesSlice";
 import { addSelectedCity, clearSelectedCities } from "../Store/selectedCitiesSlice";
@@ -22,6 +23,7 @@ export default MainMap;
 function InnerMap() {
     const selectedCities = useSelector(state => state.selectedCities.selectedCities);
     const drawRoute = useSelector(state => state.drawRoute.drawRoute);
+    const [error, setError] = useState('');
     const [cities, setCities] = useState(null);
     const [citiesRU, setCitiesRU] = useState(null);
     const [city, setCity] = useState(null);
@@ -119,6 +121,7 @@ function InnerMap() {
     }, [cities]);
 
     useEffect(() => {
+        dispatch(clearCities());
         if (city) {
             dispatch(clearSelectedCities());
             dispatch(addSelectedCity(city));
@@ -149,15 +152,21 @@ function InnerMap() {
             const locality = firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas();
             if (locality[0]) {
                 let city = locality[0];
-                city = city.replace(/городской посёлок|город|агрогородок/gi, '');
+                city = city.replace(/городской посёлок|город|агрогородок|село|деревня/gi, '');
                 setPlacemarkProperties({
                     iconCaption: city,
                     balloonContent: city
                 });
                 if (city) {
                     getCityInfo(city).then(cityInfo => {
-                        setCity(cityInfo);
-                        console.log(cityInfo);
+                        if (cityInfo)
+                            setCity(cityInfo);
+                        else {
+                            dispatch(clearSelectedCities());
+                            dispatch(clearCities());
+                            if (!city.includes('область'))
+                                setError('Выбранный город не обслуживается');
+                        }
                     });
                     getCityCode(city).then((wikiDataId) => {
                         if (wikiDataId != -1) {
@@ -278,20 +287,23 @@ function InnerMap() {
     }
 
     return (
-        <Map width={'100%'} height={'700px'} defaultState={{ center: [53.902284, 27.561831], zoom: 7 }} instanceRef={mapRef} onClick={handleMapClick}>
-            {placemarkGeometry && (
-                <Placemark
-                    geometry={placemarkGeometry}
-                    properties={placemarkProperties}
-                    options={
-                        {
-                            preset: 'islands#darkBlueIcon',
-                            draggable: true
+        <>
+            {error && <ErrorMessage msg={error} close={() => setError('')} />}
+            <Map width={'100%'} height={'700px'} defaultState={{ center: [53.902284, 27.561831], zoom: 7 }} instanceRef={mapRef} onClick={handleMapClick}>
+                {placemarkGeometry && (
+                    <Placemark
+                        geometry={placemarkGeometry}
+                        properties={placemarkProperties}
+                        options={
+                            {
+                                preset: 'islands#darkBlueIcon',
+                                draggable: true
+                            }
                         }
-                    }
-                    onDragEnd={handleDragEnd}
-                />
-            )}
-        </Map>
+                        onDragEnd={handleDragEnd}
+                    />
+                )}
+            </Map>
+        </>
     );
 }

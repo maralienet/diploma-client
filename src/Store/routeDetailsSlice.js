@@ -34,8 +34,8 @@ const routeDetailsSlice = createSlice({
         },
 
         removeCarsDetail(state, action) {
-            state.routeDetails.car.id = state.routeDetails.car.filter(car =>
-                car.id !== action.payload.id
+            state.routeDetails.car = state.routeDetails.car.filter(car =>
+                car.id !== action.payload
             )
         },
 

@@ -1,8 +1,9 @@
 import React from "react";
 import CarReport from "./CarReport";
 import RoutesReport from "./RoutesReport";
+import LogistsReport from "./LogistsReport";
 
-function CreateReports() {
+function CreateReports({ role }) {
     return (
         <div className="createReports">
             <div className="header">
@@ -11,6 +12,10 @@ function CreateReports() {
             <div className="body">
                 <CarReport />
                 <RoutesReport />
+                {
+                    role === 'admin' &&
+                    <LogistsReport />
+                }
             </div>
         </div>
     );
