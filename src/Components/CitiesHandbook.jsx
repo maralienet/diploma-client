@@ -40,14 +40,14 @@ function CitiesHandbook() {
         else if (district !== '' && name === '') {
             let filter = citiesList.filter(city => city.district.toLowerCase().startsWith(district.toLowerCase()));
             filter = groupByRegion(filter);
-            console.log(filter)
             setFilteredCities(filter);
+            console.log(filter)
         }
         else if (district !== '' && name !== '') {
             let filter = citiesList.filter(city => city.district.toLowerCase().startsWith(district.toLowerCase()) && city.name.toLowerCase().startsWith(name.toLowerCase()));
             filter = groupByRegion(filter);
-            console.log(filter)
             setFilteredCities(filter);
+            console.log(filter)
         }
         else
             setFilteredCities(null);
@@ -93,7 +93,8 @@ function CitiesHandbook() {
                                 </div>
                             ))
                             :
-                            filteredCities.lengh > 0 ? Object.entries(filteredCities).map(([district, cities], index) => (
+                            // filteredCities.lengh > 0 ? 
+                            Object.entries(filteredCities).map(([district, cities], index) => (
                                 <div key={index} className="listItem">
                                     <Collapsible trigger={district}>
                                         {
@@ -109,7 +110,7 @@ function CitiesHandbook() {
                                     </Collapsible>
                                 </div>
                             ))
-                        : <div className="nthFound">Ничего не найдено</div>
+                        // : <div className="nthFound">Ничего не найдено</div>
                     }
                 </div>
             </div>
