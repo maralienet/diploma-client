@@ -35,19 +35,16 @@ function CitiesHandbook() {
             let filter = citiesList.filter(city => city.name.toLowerCase().startsWith(name.toLowerCase()));
             filter = groupByRegion(filter);
             setFilteredCities(filter);
-            console.log((filter))
         }
         else if (district !== '' && name === '') {
             let filter = citiesList.filter(city => city.district.toLowerCase().startsWith(district.toLowerCase()));
             filter = groupByRegion(filter);
             setFilteredCities(filter);
-            console.log(Object.keys(filter).length)
         }
         else if (district !== '' && name !== '') {
             let filter = citiesList.filter(city => city.district.toLowerCase().startsWith(district.toLowerCase()) && city.name.toLowerCase().startsWith(name.toLowerCase()));
             filter = groupByRegion(filter);
             setFilteredCities(filter);
-            console.log(Object.keys(filter).length)
         }
         else
             setFilteredCities(null);
