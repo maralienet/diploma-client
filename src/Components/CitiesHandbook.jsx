@@ -93,7 +93,7 @@ function CitiesHandbook() {
                                 </div>
                             ))
                             :
-                            filteredCities.lengh !== 0 ? 
+                            filteredCities.lenght > 0 ? 
                             Object.entries(filteredCities).map(([district, cities], index) => (
                                 <div key={index} className="listItem">
                                     <Collapsible trigger={district}>
