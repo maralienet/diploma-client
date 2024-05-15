@@ -110,6 +110,9 @@ function CitiesHandbook() {
                                 </div>
                             ))
                     }
+                    {
+                        filteredCities.length===0 && <div className="nthFound">Ничего не найдено</div>
+                    }
                 </div>
             </div>
         </div>
