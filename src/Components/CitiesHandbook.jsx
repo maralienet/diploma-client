@@ -5,7 +5,7 @@ import Collapsible from 'react-collapsible';
 function CitiesHandbook() {
     const [name, setName] = useState('');
     const [district, setDistrict] = useState('');
-    const [filteredCities, setFilteredCities] = useState([]);
+    const [filteredCities, setFilteredCities] = useState(null);
     const [citiesList, setCitiesList] = useState(null);
     const [groupedByRegionCitiesList, setGroupedByRegionCitiesList] = useState(null);
 
@@ -50,7 +50,7 @@ function CitiesHandbook() {
             console.log(filter)
         }
         else
-            setFilteredCities([]);
+            setFilteredCities(null);
     }, [name, district])
 
     return (
