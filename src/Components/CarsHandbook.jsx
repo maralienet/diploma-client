@@ -10,7 +10,7 @@ function CarsHandbook() {
     const [groupedCarsList, setGroupedCarsList] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/cars").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/cars").then((res) => {
             setCarsList(res.data);
             setGroupedCarsList(groupByBrand(res.data));
         });

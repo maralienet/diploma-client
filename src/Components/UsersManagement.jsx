@@ -12,7 +12,7 @@ function UsersManagement() {
     const [add, setAdd] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/users').then((res) => {
+        axios.get('https://diploma-server-30k4.onrender.com/users').then((res) => {
             setUsers(res.data);
         });
     }, []);
@@ -23,13 +23,13 @@ function UsersManagement() {
 
     function manageUser(id) {
         if (confirm.del)
-            axios.delete(`http://localhost:3001/users/${id}`).then((res) => {
-                axios.get('http://localhost:3001/users').then((res) => {
+            axios.delete(`https://diploma-server-30k4.onrender.com/users/${id}`).then((res) => {
+                axios.get('https://diploma-server-30k4.onrender.com/users').then((res) => {
                     setUsers(res.data);
                 });
             })
         if (confirm.add)
-            axios.get('http://localhost:3001/users').then((res) => {
+            axios.get('https://diploma-server-30k4.onrender.com/users').then((res) => {
                 setUsers(res.data);
             });
     }

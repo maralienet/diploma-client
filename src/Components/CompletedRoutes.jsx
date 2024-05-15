@@ -10,7 +10,7 @@ function CompletedRoutes() {
     const [filteredScedule, setFilteredScedule] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/scedule/completed").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/scedule/completed").then((res) => {
             setScedule(groupCars(res.data));
         });
     }, []);

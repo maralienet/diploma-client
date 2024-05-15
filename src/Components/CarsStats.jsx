@@ -11,10 +11,10 @@ function CarsStats() {
     const [carRoutesInfo, setCarRoutesInfo] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/cars").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/cars").then((res) => {
             setCarsList(res.data);
         });
-        axios.get("http://localhost:3001/routings").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/routings").then((res) => {
             setRoutesList(res.data);
         });
     }, []);
@@ -37,7 +37,7 @@ function CarsStats() {
     }, [brand, gosNumber])
 
     function handleClick(id) {
-        axios.get(`http://localhost:3001/routings/bycar/${id}`).then((res) => {
+        axios.get(`https://diploma-server-30k4.onrender.com/routings/bycar/${id}`).then((res) => {
             setCarRoutesInfo(res.data[0]);
         });
     }

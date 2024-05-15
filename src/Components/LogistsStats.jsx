@@ -10,7 +10,7 @@ function LogistsStats() {
     const [surname, setSurname] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:3001/users/stats").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/users/stats").then((res) => {
             setStats(res.data);
         });
     }, []);

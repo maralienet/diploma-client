@@ -14,7 +14,7 @@ function Admin() {
     const [selectedMngmnt, setSelectedMngmnt] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users?id=${id}`).then((res) => {
+        axios.get(`https://diploma-server-30k4.onrender.com/users?id=${id}`).then((res) => {
             setUser(res.data[0])
         });
     }, []);

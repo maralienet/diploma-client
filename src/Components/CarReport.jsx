@@ -10,7 +10,7 @@ function CarReport() {
     const today = formatDate(new Date());
     function saveReport(isPeriod) {
         if (isPeriod) {
-            axios.get(`http://localhost:3001/pdf/cars/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
+            axios.get(`https://diploma-server-30k4.onrender.com/pdf/cars/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
                 .then(response => {
                     console.log(response.data)
                     const url = window.URL.createObjectURL(response.data);
@@ -26,7 +26,7 @@ function CarReport() {
                 });
         }
         else {
-            axios.get(`http://localhost:3001/pdf/cars/month`, { responseType: 'blob' })
+            axios.get(`https://diploma-server-30k4.onrender.com/pdf/cars/month`, { responseType: 'blob' })
                 .then(response => {
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');

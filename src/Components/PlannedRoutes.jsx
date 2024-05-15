@@ -10,7 +10,7 @@ function PlannedRoutes() {
     const [filteredScedule, setFilteredScedule] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/scedule/planned").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/scedule/planned").then((res) => {
             setScedule(groupCars(res.data));
         });
     }, []);

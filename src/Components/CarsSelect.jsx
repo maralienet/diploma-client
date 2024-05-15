@@ -10,7 +10,7 @@ function CarsSelect() {
     const [isMultiChoice, setMultiChoice] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/cars?active=true`).then((res) => {
+        axios.get(`https://diploma-server-30k4.onrender.com/cars?active=true`).then((res) => {
             setCars(res.data);
         });
     }, []);

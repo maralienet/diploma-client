@@ -42,7 +42,7 @@ function ChangePass({ user }) {
         else {
             setOldErr('');
             if (againErr === '' && newpErr === '') {
-                axios.put(`http://localhost:3001/users/${user.id}`, {
+                axios.put(`https://diploma-server-30k4.onrender.com/users/${user.id}`, {
                     password: again
                 }).then(() => setSucc('Пароль изменён успешно!'))
             }

@@ -10,7 +10,7 @@ function RoutesReport() {
     const today = formatDate(new Date());
     function saveReport(isPeriod) {
         if (isPeriod) {
-            axios.get(`http://localhost:3001/pdf/routes/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
+            axios.get(`https://diploma-server-30k4.onrender.com/pdf/routes/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
                 .then(response => {
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');
@@ -25,7 +25,7 @@ function RoutesReport() {
                 });
         }
         else {
-            axios.get(`http://localhost:3001/pdf/routes/month`, { responseType: 'blob' })
+            axios.get(`https://diploma-server-30k4.onrender.com/pdf/routes/month`, { responseType: 'blob' })
                 .then(response => {
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');

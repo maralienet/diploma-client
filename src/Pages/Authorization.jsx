@@ -11,7 +11,7 @@ function Authorization() {
     const [passError, setPassError] = useState('');
 
     useEffect(() => {
-        axios.get("http://localhost:3001/users?active=true").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/users?active=true").then((res) => {
             setUserList(res.data)
         });
     }, []);
