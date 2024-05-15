@@ -93,7 +93,7 @@ function CitiesHandbook() {
                                 </div>
                             ))
                             :
-                            // filteredCities.lengh > 0 ? 
+                            filteredCities.lengh !== 0 ? 
                             Object.entries(filteredCities).map(([district, cities], index) => (
                                 <div key={index} className="listItem">
                                     <Collapsible trigger={district}>
@@ -110,7 +110,7 @@ function CitiesHandbook() {
                                     </Collapsible>
                                 </div>
                             ))
-                        // : <div className="nthFound">Ничего не найдено</div>
+                        : <div className="nthFound">Ничего не найдено</div>
                     }
                 </div>
             </div>
