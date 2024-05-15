@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Details from '../Components/Details';
 import MainManage from '../Components/MainManage';
 import MainMap from '../Components/Map';
