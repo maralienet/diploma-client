@@ -69,8 +69,8 @@ function CarsStats() {
                                 <div key={car.id} className="listItem" onClick={() => handleClick(car.id)}>
                                     <Collapsible trigger={`${car.brand} (${car.gosNumber})`}>
                                         <div className="info">
-                                            <span>Маршрутов проехано: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
-                                            <span>Километров проехано: {carRoutesInfo ? carRoutesInfo.totalLength : 0}</span>
+                                            <span>Маршрутов выполнено: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
+                                            <span>Километров преодолено: {carRoutesInfo ? carRoutesInfo.totalLength : 0}</span>
                                         </div>
                                         <div key={car.id}>
                                             {
@@ -88,12 +88,12 @@ function CarsStats() {
                             ))
 
                             :
-                            filteredCars.length>0 ? filteredCars.map(car => (
+                            filteredCars.length > 0 ? filteredCars.map(car => (
                                 <div key={car.id} className="listItem" onClick={() => handleClick(car.id)}>
                                     <Collapsible trigger={`${car.brand} (${car.gosNumber})`}>
                                         <div className="info">
-                                            <span>Маршрутов проехано: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
-                                            <span>Километров проехано: {carRoutesInfo ? carRoutesInfo.totalLength : 0}</span>
+                                            <span>Маршрутов выполнено: {carRoutesInfo ? carRoutesInfo.routesCount : 0}</span>
+                                            <span>Километров преодолено: {carRoutesInfo ? carRoutesInfo.totalLength : 0}</span>
                                         </div>
                                         <div key={car.id}>
                                             {
@@ -109,7 +109,7 @@ function CarsStats() {
                                     </Collapsible>
                                 </div>
                             ))
-                            : <div className="nthFound">Ничего не найдено</div>
+                                : <div className="nthFound">Ничего не найдено</div>
                     }
                 </div>
             </div >

@@ -47,7 +47,6 @@ function ChangePass({ user }) {
                 }).then(() => setSucc('Пароль изменён успешно!'))
             }
         }
-        console.log(user.password)
     }
 
     return (
