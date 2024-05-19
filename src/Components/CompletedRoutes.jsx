@@ -48,7 +48,7 @@ function CompletedRoutes() {
     return (
         <div className="activeRoutes">
             <div className="header">
-                <h3>Запланированные маршруты</h3>
+                <h3>Выполненные маршруты</h3>
             </div>
             <div className="body">
                 <div className="search">
