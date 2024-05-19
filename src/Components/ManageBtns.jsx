@@ -52,7 +52,7 @@ function ManageBtns() {
             let dateT = document.getElementById('dateTo');
             if(dateT) dateT.value='';
             let weight = document.getElementById('weight');
-            weight.value=0;
+            weight.value='';
             let timeF = document.getElementById('timeFrom');
             timeF.value='';
 
