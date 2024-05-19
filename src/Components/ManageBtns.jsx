@@ -5,6 +5,7 @@ import { draw, clear } from "../Store/drawRouteSlice";
 import { clearDetails } from "../Store/routeDetailsSlice";
 import { clearSelectedCities, clearSelectedCities_But1 } from "../Store/selectedCitiesSlice";
 import { clearCities } from "../Store/citiesSlice";
+import { clearScedule } from '../Store/sceduleSlice';
 
 import ErrorMessage from './ErrorMessage';
 
@@ -56,6 +57,8 @@ function ManageBtns() {
                 else {
                     dispatch(clearSelectedCities());
                     dispatch(clearCities());
+                    dispatch(clearScedule());
+                    dispatch(clearDetails());
                 }
             }
         }

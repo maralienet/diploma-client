@@ -24,7 +24,12 @@ const sceduleSlice = createSlice({
             state.scedule.timeFrom = action.payload;
         },
         clearScedule(state, action) {
-            state.scedule = {};
+            state.scedule = {
+                isMulti: false,
+                dateFrom: null,
+                dateTo: null,
+                timeFrom: null,
+            };
         }
     }
 });
