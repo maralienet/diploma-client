@@ -47,6 +47,12 @@ function ManageBtns() {
         if (drawRoute.clear) {
             let checks = Array.from(document.getElementsByClassName('carSelect'));
             checks.forEach((item) => item.checked = false);
+            let dateF = document.getElementById('dateFrom');
+            dateF.value='';
+            let dateT = document.getElementById('dateTo');
+            dateT.value='';
+            let weight = document.getElementById('weight');
+            weight.value='';
 
             if (selectedCities.length > 0) {
                 let checks1 = Array.from(document.getElementsByClassName('citySelect'));

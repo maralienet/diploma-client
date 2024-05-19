@@ -39,7 +39,7 @@ function WeightSelect() {
                 <div className="search">
                     <div className="inputDiv">
                         <label>
-                            <input type="number" min={1} placeholder="Вес груза (в кг)" onChange={(e) => setWeight(e.target.value)} />
+                            <input type="number" min={1} id='weight' placeholder="Вес груза (в кг)" onChange={(e) => setWeight(e.target.value)} />
                             <span>Вес груза (в кг)</span>
                         </label>
                     </div>
