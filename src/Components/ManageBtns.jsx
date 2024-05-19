@@ -50,9 +50,11 @@ function ManageBtns() {
             let dateF = document.getElementById('dateFrom');
             dateF.value='';
             let dateT = document.getElementById('dateTo');
-            dateT.value='';
+            if(dateT.value) dateT.value='';
             let weight = document.getElementById('weight');
-            weight.value='';
+            weight.value=0;
+            let timeF = document.getElementById('timeFrom');
+            timeF.value='';
 
             if (selectedCities.length > 0) {
                 let checks1 = Array.from(document.getElementsByClassName('citySelect'));
