@@ -50,7 +50,7 @@ function ManageBtns() {
             let dateF = document.getElementById('dateFrom');
             dateF.value='';
             let dateT = document.getElementById('dateTo');
-            if(dateT.value) dateT.value='';
+            if(dateT) dateT.value='';
             let weight = document.getElementById('weight');
             weight.value=0;
             let timeF = document.getElementById('timeFrom');
