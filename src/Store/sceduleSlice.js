@@ -33,6 +33,6 @@ const sceduleSlice = createSlice({
         }
     }
 });
-export const { setIsMulti, setDateFrom, setDateTo, setTimeFrom } = sceduleSlice.actions
+export const { setIsMulti, setDateFrom, setDateTo, setTimeFrom, clearScedule } = sceduleSlice.actions
 
 export default sceduleSlice.reducer;
