@@ -21,9 +21,9 @@ function DateSelect() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        axios.get('https://diploma-server-30k4.onrender.com/scedule/active').then((res) => setScedActive(res.data))
-        axios.get('https://diploma-server-30k4.onrender.com/scedule/planned').then((res) => setScedPlan(res.data))
-        axios.get('https://diploma-server-30k4.onrender.com/cars').then((res) => setAllCars(res.data))
+        axios.get('https://diploma-server-1.onrender.com/scedule/active').then((res) => setScedActive(res.data))
+        axios.get('https://diploma-server-1.onrender.com/scedule/planned').then((res) => setScedPlan(res.data))
+        axios.get('https://diploma-server-1.onrender.com/cars').then((res) => setAllCars(res.data))
     }, []);
 
     useEffect(() => {

@@ -10,7 +10,7 @@ function CitiesHandbook() {
     const [groupedByRegionCitiesList, setGroupedByRegionCitiesList] = useState(null);
 
     useEffect(() => {
-        axios.get("https://diploma-server-30k4.onrender.com/cities").then((res) => {
+        axios.get("https://diploma-server-1.onrender.com/cities").then((res) => {
             setCitiesList(res.data);
             setGroupedByRegionCitiesList(groupByRegion(res.data));
         });

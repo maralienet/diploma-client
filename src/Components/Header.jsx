@@ -18,7 +18,7 @@ function Header() {
 
     useEffect(() => {
         if (id)
-            axios.get(`https://diploma-server-30k4.onrender.com/users?id=${id}`).then((res) => {
+            axios.get(`https://diploma-server-1.onrender.com/users?id=${id}`).then((res) => {
                 setUser(res.data[0])
                 if (user) {
                     if (user.role === 1) setLeft('/admin')

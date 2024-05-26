@@ -12,7 +12,7 @@ function TrucsManagement() {
     const [add, setAdd] = useState(false);
 
     useEffect(() => {
-        axios.get('https://diploma-server-30k4.onrender.com/cars').then((res) => {
+        axios.get('https://diploma-server-1.onrender.com/cars').then((res) => {
             setCars(res.data);
         });
     }, []);
@@ -23,13 +23,13 @@ function TrucsManagement() {
 
     function manageTruck(id) {
         if (confirm.del)
-            axios.delete(`https://diploma-server-30k4.onrender.com/cars/${id}`).then((res) => {
-                axios.get('https://diploma-server-30k4.onrender.com/cars').then((res) => {
+            axios.delete(`https://diploma-server-1.onrender.com/cars/${id}`).then((res) => {
+                axios.get('https://diploma-server-1.onrender.com/cars').then((res) => {
                     setCars(res.data);
                 });
             })
         if (confirm.add)
-            axios.get('https://diploma-server-30k4.onrender.com/cars').then((res) => {
+            axios.get('https://diploma-server-1.onrender.com/cars').then((res) => {
                 setCars(res.data);
             });
     }

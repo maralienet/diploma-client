@@ -17,7 +17,7 @@ function SaveRoute() {
     const moment = require('moment');
 
     useEffect(() => {
-        axios.get('https://diploma-server-30k4.onrender.com/routings/codes').then((res) => {
+        axios.get('https://diploma-server-1.onrender.com/routings/codes').then((res) => {
             setCodes(res.data);
         })
     }, []);
@@ -39,7 +39,7 @@ function SaveRoute() {
             const code = generateCode();
             setCode(code);
             cars.forEach(car => {
-                axios.post('https://diploma-server-30k4.onrender.com/routings', {
+                axios.post('https://diploma-server-1.onrender.com/routings', {
                     routeId: code,
                     carId: car.id,
                     route: cities,
@@ -49,9 +49,9 @@ function SaveRoute() {
                     userId: id
                 }).
                     then(function (res) {
-                        axios.get(`https://diploma-server-30k4.onrender.com/routings/lastRouteByCar/${car.id}`).then((res) => {
+                        axios.get(`https://diploma-server-1.onrender.com/routings/lastRouteByCar/${car.id}`).then((res) => {
                             let routeId = res.data;
-                            axios.post('https://diploma-server-30k4.onrender.com/scedule', {
+                            axios.post('https://diploma-server-1.onrender.com/scedule', {
                                 carId: car.id,
                                 isMulti: scedule.isMulti,
                                 dateFrom: scedule.dateFrom,

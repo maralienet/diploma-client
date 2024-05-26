@@ -59,7 +59,7 @@ function InnerMap() {
         }).catch((error) => {
             console.error('Ошибка при загрузке Yandex Maps:', error);
         });
-        axios.get("https://diploma-server-30k4.onrender.com/cities").then((res) => {
+        axios.get("https://diploma-server-1.onrender.com/cities").then((res) => {
             setCitiesRU(res.data);
         });
     }, []);

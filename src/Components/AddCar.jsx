@@ -16,7 +16,7 @@ function AddCar({ onAddCar, confirm, cancel }) {
             gosNumber: `${gosNum}-${gosNumReg}`,
             capacity: capacity
         };
-        axios.post('https://diploma-server-30k4.onrender.com/cars', car).then(() => {
+        axios.post('https://diploma-server-1.onrender.com/cars', car).then(() => {
             console.log(car)
             onAddCar(car);
             confirm();

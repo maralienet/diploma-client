@@ -9,10 +9,10 @@ function RoutesStats() {
     const [carsList, setCarsList] = useState([]);
 
     useEffect(() => {
-        axios.get("https://diploma-server-30k4.onrender.com/cars").then((res) => {
+        axios.get("https://diploma-server-1.onrender.com/cars").then((res) => {
             setCarsList(res.data);
         });
-        axios.get("https://diploma-server-30k4.onrender.com/routings/byroute").then((res) => {
+        axios.get("https://diploma-server-1.onrender.com/routings/byroute").then((res) => {
             setRoutesList(res.data);
         });
     }, []);

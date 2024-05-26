@@ -16,7 +16,7 @@ function AddCity({ close, cityName }) {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        axios.get("https://diploma-server-30k4.onrender.com/cities").then((res) => {
+        axios.get("https://diploma-server-1.onrender.com/cities").then((res) => {
             setCitiesList(res.data);
             setCity(cityName);
         });

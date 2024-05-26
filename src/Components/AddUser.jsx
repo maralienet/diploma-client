@@ -35,7 +35,7 @@ function AddUser({ onAddUser, confirm, cancel }) {
             password: login,
             role: role
         };
-        axios.post('https://diploma-server-30k4.onrender.com/users', user).then(() => {
+        axios.post('https://diploma-server-1.onrender.com/users', user).then(() => {
             onAddUser(user);
             confirm();
         });
