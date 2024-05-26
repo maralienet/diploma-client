@@ -5,7 +5,6 @@ import ErrorMessage from './ErrorMessage';
 
 import { addSelectedCity } from "../Store/selectedCitiesSlice";
 
-
 function AddCity({ close, cityName }) {
     const dispatch = useDispatch();
     const [citiesList, setCitiesList] = useState([]);
