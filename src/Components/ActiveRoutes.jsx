@@ -10,7 +10,7 @@ function ActiveRoutes() {
     const [filteredScedule, setFilteredScedule] = useState(null);
 
     useEffect(() => {
-        axios.get("https://diploma-server-tan.vercel.app/scedule/active").then((res) => {
+        axios.get("https://diploma-server-30k4.onrender.com/scedule/active").then((res) => {
             setScedule(groupCars(res.data));
         });
     }, []);
