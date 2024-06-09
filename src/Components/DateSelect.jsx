@@ -53,8 +53,8 @@ function DateSelect() {
         console.log(momentDateFrom)
         console.log(momentDateTo)
         let sced = scedPlan.filter(item => {
-            let momentItemDateFrom = moment(item.dateFrom);
-            let momentItemDateTo = item.dateTo ? moment(item.dateTo) : null;
+            let momentItemDateFrom = moment(item.dateFrom).format("YYYY-MM-DD");
+            let momentItemDateTo = item.dateTo ? moment(item.dateTo).format("YYYY-MM-DD") : null;
             console.log(momentItemDateFrom)
             console.log(momentItemDateTo)
             if (!momentDateTo)
