@@ -24,10 +24,10 @@ function DateSelect() {
         axios.get('https://diploma-server-1.onrender.com/scedule/active').then((res) => setScedActive(res.data))
         axios.get('https://diploma-server-1.onrender.com/scedule/planned').then((res) => setScedPlan(res.data))
         axios.get('https://diploma-server-1.onrender.com/cars').then((res) => setAllCars(res.data))
+        console.log(1)
     }, []);
 
     useEffect(() => {
-        console.log(cars)
         if (dateFrom === today && !isMulti)
             isOccupiedNow();
         else
