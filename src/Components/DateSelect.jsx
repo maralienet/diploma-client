@@ -27,12 +27,10 @@ function DateSelect() {
     }, []);
 
     useEffect(() => {
-        if (dateFrom === today && !isMulti) {
-            isOccupiedNow(); console.log(1)
-        }
-        else {
-            isOccupiedThen(); console.log(22)
-        }
+        if (dateFrom === today && !isMulti)
+            isOccupiedNow();
+        else
+            isOccupiedThen();
     }, [dateFrom, dateTo, timeFrom, cars]);
 
     function isOccupiedNow() {
@@ -51,6 +49,7 @@ function DateSelect() {
     function isOccupiedThen() {
         let carsIds = [];
         if (cars) carsIds = cars.map(car => car.id);
+        console.log(scedPlan)
         let sced = scedPlan.filter(item => moment(item.dateFrom).isSame(dateFrom));
         sced.forEach(item => {
             console.log(item)
