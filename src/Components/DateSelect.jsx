@@ -27,7 +27,8 @@ function DateSelect() {
     }, []);
 
     useEffect(() => {
-        console.log(cars)
+        console.log(dateFrom)
+        console.log(isMulti)
         if (dateFrom === today && !isMulti)
             isOccupiedNow();
         else
