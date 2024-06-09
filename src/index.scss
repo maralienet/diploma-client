@@ -131,6 +131,7 @@ body {
 }
 
 header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 10000;
@@ -1251,6 +1252,7 @@ header {
       width: 25%;
 
       ul {
+        position: -webkit-sticky;
         position: sticky;
         top: 100px;
         display: flex;

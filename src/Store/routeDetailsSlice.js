@@ -17,6 +17,7 @@ const routeDetailsSlice = createSlice({
             else
                 state.routeDetails[action.payload.key] = action.payload.value;
         },
+
         addCarDetail(state, action) {
             if (!state.routeDetails.car) {
                 state.routeDetails.car = [];
@@ -46,5 +47,4 @@ const routeDetailsSlice = createSlice({
 })
 
 export const { addDetail, addCarDetail, removeDetail, removeCarsDetail, clearDetails } = routeDetailsSlice.actions;
-
 export default routeDetailsSlice.reducer;

@@ -22,9 +22,8 @@ function CarsSelect() {
             else
                 dispatch(addDetail({ key: 'car', value: car }));
         }
-        else {
+        else
             dispatch(removeCarsDetail(car.id));
-        }
     }
 
     return (

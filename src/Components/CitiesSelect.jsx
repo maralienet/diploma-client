@@ -22,12 +22,10 @@ function CitiesSelect() {
     }, []);
 
     function handleChange(city) {
-        if (document.getElementById(city.wikiDataId).checked) {
+        if (document.getElementById(city.wikiDataId).checked) 
             dispatch(addSelectedCity(city));
-        }
-        else {
+        else
             dispatch(removeSelectedCity(city));
-        }
     }
 
     useEffect(() => {

@@ -17,11 +17,9 @@ const drawRouteSlice = createSlice({
         clear(state, action) {
             state.drawRoute.draw = false;
             state.drawRoute.clear = true;
-        },
-
-        
+        }
     }
 })
-export const { draw, clear,  } = drawRouteSlice.actions;
+export const { draw, clear } = drawRouteSlice.actions;
 
 export default drawRouteSlice.reducer;

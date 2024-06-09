@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function AdviceList() {
     const [active, setActive] = useState('');
-
     return (
         <ul>
             <li onClick={() => setActive('adv1')}>

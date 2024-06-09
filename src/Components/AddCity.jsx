@@ -73,9 +73,8 @@ function AddCity({ close, cityName }) {
             }));
             close();
         }
-        else {
+        else
             setError('Выберите город');
-        }
     }
     
     return (

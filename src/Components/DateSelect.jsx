@@ -27,7 +27,7 @@ function DateSelect() {
     }, []);
 
     useEffect(() => {
-        if (dateFrom === today)
+        if (dateFrom === today && !isMulti)
             isOccupiedNow();
         else
             isOccupiedThen();

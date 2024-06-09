@@ -18,9 +18,8 @@ function CitiesHandbook() {
 
     function groupByRegion(cities) {
         const byRegion = cities.reduce((acc, city) => {
-            if (!acc[city.region]) {
+            if (!acc[city.region])
                 acc[city.region] = [];
-            }
             acc[city.region].push(city);
             return acc;
         }, {});

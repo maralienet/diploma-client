@@ -11,7 +11,6 @@ import Help from './Pages/Help';
 
 
 function App() {
-
   function openHelp(e) {
     if (e.keyCode === 112) {
       var a = document.createElement('a');
