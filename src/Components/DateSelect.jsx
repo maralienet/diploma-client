@@ -50,13 +50,9 @@ function DateSelect() {
         if (cars) carsIds = cars.map(car => car.id);
         let momentDateFrom = moment(dateFrom);
         let momentDateTo = dateTo ? moment(dateTo) : null;
-        console.log(momentDateFrom)
-        console.log(momentDateTo)
         let sced = scedPlan.filter(item => {
             let momentItemDateFrom = moment(item.dateFrom);
             let momentItemDateTo = item.dateTo ? moment(item.dateTo) : null;
-            console.log(momentItemDateFrom.format("YYYY-MM-DD"))
-            console.log(momentItemDateTo ? momentItemDateTo.format("YYYY-MM-DD") : null)
             if (!momentDateTo)
                 return !item.dateTo ? momentDateFrom.isSame(momentItemDateFrom) : momentDateFrom.isBetween(momentItemDateFrom, momentItemDateTo, null, '[]');
             else
@@ -82,6 +78,10 @@ function DateSelect() {
     function handleSetDateFrom(date) {
         _setDateFrom(date);
         dispatch(setDateFrom(date));
+        if(!isMulti){
+            _setDateTo(null);
+            dispatch(setDateFrom(null));
+        }
     }
 
     function handleDateTo(date) {
