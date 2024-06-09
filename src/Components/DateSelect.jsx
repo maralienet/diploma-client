@@ -37,7 +37,6 @@ function DateSelect() {
         let carsIds = [];
         if (cars) carsIds = cars.map(car => car.id);
         scedActive.forEach(item => {
-            console.log(item)
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
                 dispatch(removeCarsDetail(item.carId))
@@ -53,21 +52,19 @@ function DateSelect() {
         if (!dateTo)
             sced = scedPlan.filter(item => {
                 if (!item.dateTo)
-                    return moment(dateFrom).isSame(item.dateFrom);
+                    return moment(dateFrom).isSame(moment(item.dateFrom));
                 else
-                    return moment(dateFrom).isBetween(item.dateFrom, item.dateTo, null, '[]');
+                    return moment(dateFrom).isBetween(moment(item.dateFrom), moment(item.dateTo), null, '[]');
             });
         else
             sced = scedPlan.filter(item => {
                 if (!item.dateTo)
-                    return moment(item.dateFrom).isBetween(dateFrom, dateTo, null, '[]');
+                    return moment(item.dateFrom).isBetween(moment(dateFrom), moment(dateTo), null, '[]');
                 else
-                    return (moment(item.dateFrom).isSameOrAfter(dateFrom) && moment(item.dateTo).isSameOrBefore(dateTo)) ||
-                    (moment(dateFrom).isSameOrAfter(item.dateFrom) && moment(dateTo).isSameOrBefore(item.dateTo));
+                    return (moment(item.dateFrom).isSameOrAfter(moment(dateFrom)) && moment(item.dateTo).isSameOrBefore(moment(dateTo))) ||
+                    (moment(dateFrom).isSameOrAfter(moment(item.dateFrom)) && moment(dateTo).isSameOrBefore(moment(item.dateTo)));
             });
-        console.log(sced)
         sced.forEach(item => {
-            console.log(item)
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
                 dispatch(removeCarsDetail(item.carId))
