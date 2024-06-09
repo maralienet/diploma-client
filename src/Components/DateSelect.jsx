@@ -62,8 +62,8 @@ function DateSelect() {
                 if (!item.dateTo)
                     return moment(item.dateFrom).isBetween(dateFrom, dateTo, null, '[]');
                 else
-                    return moment(item.dateFrom).isSameOrAfter(dateFrom) && moment(item.dateTo).isSameOrBefore(dateTo) &&
-                    moment(dateFrom).isSameOrAfter(item.dateFrom) && moment(dateTo).isSameOrBefore(item.dateTo);
+                    return (moment(item.dateFrom).isSameOrAfter(dateFrom) && moment(item.dateTo).isSameOrBefore(dateTo)) ||
+                    (moment(dateFrom).isSameOrAfter(item.dateFrom) && moment(dateTo).isSameOrBefore(item.dateTo));
             });
         console.log(sced)
         sced.forEach(item => {
