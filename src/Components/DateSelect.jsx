@@ -53,17 +53,17 @@ function DateSelect() {
         if (!dateTo)
             sced = scedPlan.filter(item => {
                 if (!item.dateTo)
-                    moment(dateFrom).isSame(item.dateFrom)
+                    return moment(dateFrom).isSame(item.dateFrom);
                 else
-                    moment(dateFrom).isBetween(item.dateFrom, item.dateTo, null, '[]')
+                    return moment(dateFrom).isBetween(item.dateFrom, item.dateTo, null, '[]');
             });
         else
             sced = scedPlan.filter(item => {
                 if (!item.dateTo)
-                    moment(item.dateFrom).isBetween(dateFrom, dateTo, null, '[]')
+                    return moment(item.dateFrom).isBetween(dateFrom, dateTo, null, '[]');
                 else
-                    moment(dateFrom).isSameOrAfter(item.dateFrom) && dateTo.isSameOrBefore(item.dateTo)
-            });
+                    return moment(dateFrom).isSameOrAfter(item.dateFrom) && dateTo.isSameOrBefore(item.dateTo);
+            });        
         sced.forEach(item => {
             console.log(item)
             if (carsIds.includes(item.carId)) {
