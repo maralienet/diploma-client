@@ -28,14 +28,13 @@ function CarsHandbook() {
     }
 
     useEffect(() => {
-        console.log(brand)
-        console.log(gosNumber)
         if (brand !== '' && gosNumber === '') {
             let filter = carsList.filter(car => car.brand.toLowerCase().startsWith(brand.toLowerCase()));
             filter = groupByBrand(filter);
             setFilteredCars(filter);
         }
         else if (gosNumber !== '' && brand === '') {
+            console.log(carsList[0])
             let filter = carsList.filter(car => car.gosNumber.toLowerCase().startsWith(gosNumber.toLowerCase()));
             filter = groupByBrand(filter);
             setFilteredCars(filter);
