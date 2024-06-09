@@ -12,6 +12,6 @@ export default configureStore({
         selectedCities: selectedCitiesReducer,
         drawRoute: drawRouteReducer,
         routeDetails: routeDetailsReducer,
-        scedule: sceduleReducer,
+        scedule: sceduleReducer
     }
 })
