@@ -15,9 +15,9 @@ function DateSelect() {
     const [scedActive, setScedActive] = useState([]);
     const [scedPlan, setScedPlan] = useState([]);
     const [isMulti, setMulti] = useState(false);
-    const [dateFrom, _setDateFrom] = useState();
-    const [dateTo, _setDateTo] = useState();
-    const [timeFrom, _setTimeFrom] = useState();
+    const [dateFrom, _setDateFrom] = useState(null);
+    const [dateTo, _setDateTo] = useState(null);
+    const [timeFrom, _setTimeFrom] = useState(null);
     const [error, setError] = useState('');
 
     useEffect(() => {
