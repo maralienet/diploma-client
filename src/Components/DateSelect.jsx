@@ -80,7 +80,7 @@ function DateSelect() {
         dispatch(setDateFrom(date));
         if(!isMulti){
             _setDateTo(null);
-            dispatch(setDateFrom(null));
+            dispatch(setDateTo(null));
         }
     }
 
