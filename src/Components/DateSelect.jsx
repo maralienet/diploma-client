@@ -51,8 +51,8 @@ function DateSelect() {
         let momentDateFrom = moment(dateFrom);
         let momentDateTo = dateTo ? moment(dateTo) : null;
         let sced = scedPlan.filter(item => {
-            let momentItemDateFrom = moment(item.dateFrom);
-            let momentItemDateTo = item.dateTo ? moment(item.dateTo) : null;
+            let momentItemDateFrom = moment(item.dateFrom).startOf('day');
+            let momentItemDateTo = item.dateTo ? moment(item.dateTo).startOf('day') : null;
             if (!momentDateTo)
                 return !item.dateTo ? momentDateFrom.isSame(momentItemDateFrom) : momentDateFrom.isBetween(momentItemDateFrom, momentItemDateTo, null, '[]');
             else
