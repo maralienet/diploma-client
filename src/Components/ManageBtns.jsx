@@ -19,6 +19,7 @@ function ManageBtns() {
 
     function handleDraw() {
         if (routeDetails !== null) {
+            console.log(routeDetails)
             if (routeDetails.car && routeDetails.weight && selectedCities.length > 0 && (scedule.dateFrom && scedule.timeFrom)) {
                 dispatch(draw());
                 setError('');
