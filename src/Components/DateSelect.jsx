@@ -53,17 +53,17 @@ function DateSelect() {
         console.log(momentDateFrom)
         console.log(momentDateTo)
         let sced = scedPlan.filter(item => {
-            let momentItemDateFrom = moment(item.dateFrom).format("YYYY-MM-DD");
-            let momentItemDateTo = item.dateTo ? moment(item.dateTo).format("YYYY-MM-DD") : null;
-            console.log(momentItemDateFrom)
-            console.log(momentItemDateTo)
+            let momentItemDateFrom = moment(item.dateFrom);
+            let momentItemDateTo = item.dateTo ? moment(item.dateTo) : null;
+            console.log(momentItemDateFrom.format("YYYY-MM-DD"))
+            console.log(momentItemDateTo ? momentItemDateTo.format("YYYY-MM-DD") : null)
             if (!momentDateTo)
                 return !item.dateTo ? momentDateFrom.isSame(momentItemDateFrom) : momentDateFrom.isBetween(momentItemDateFrom, momentItemDateTo, null, '[]');
             else
                 return !item.dateTo ? momentItemDateFrom.isBetween(momentDateFrom, momentDateTo, null, '[]') :
-                    (momentItemDateFrom.isSameOrAfter(momentDateFrom) && momentItemDateTo.isSameOrBefore(momentDateTo)) ||
-                    (momentDateFrom.isSameOrAfter(momentItemDateFrom) && momentDateTo.isSameOrBefore(momentItemDateTo));
-        });
+                    (momentItemDateFrom.isSameOrAfter(momentDateFrom) && (momentItemDateTo ? momentItemDateTo.isSameOrBefore(momentDateTo) : true)) ||
+                    (momentDateFrom.isSameOrAfter(momentItemDateFrom) && (momentDateTo ? momentDateTo.isSameOrBefore(momentItemDateTo) : true));
+        });        
         sced.forEach(item => {
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
