@@ -106,9 +106,7 @@ function CitiesHandbook() {
                                 </div>
                             ))
                     }
-                    {
-                        filteredCities && Object.keys(filteredCities).length===0 && <div className="nthFound">Ничего не найдено</div>
-                    }
+                    {filteredCities && Object.keys(filteredCities).length === 0 && <div className="nthFound">Ничего не найдено</div>}
                 </div>
             </div>
         </div>

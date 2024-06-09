@@ -88,7 +88,7 @@ function CarsHandbook() {
                                 </div>
                             ))
                             :
-                            filteredCars.length>0 ? Object.entries(filteredCars).map(([brand, cars], index) => (
+                            Object.entries(filteredCars).map(([brand, cars], index) => (
                                 <div key={index} className="listItem">
                                     <Collapsible trigger={brand}>
                                         {
@@ -104,8 +104,8 @@ function CarsHandbook() {
                                     </Collapsible>
                                 </div>
                             ))
-                            : <div className="nthFound">Ничего не найдено</div>
                     }
+                    {filteredCars && Object.keys(filteredCars).length === 0 && <div className="nthFound">Ничего не найдено</div>}
                 </div>
             </div>
         </div>
