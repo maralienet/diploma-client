@@ -63,9 +63,6 @@ function SaveRoute() {
                         })
                         setSaved(true);
                         setUnique(false);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
                     });
             })
         }

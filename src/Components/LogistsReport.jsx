@@ -12,7 +12,6 @@ function LogistsReport(){
         if (isPeriod) {
             axios.get(`https://diploma-server-1.onrender.com/pdf/logists/period/${dates[0]}/${dates[1]}`, { responseType: 'blob' })
                 .then(response => {
-                    console.log(response.data)
                     const url = window.URL.createObjectURL(response.data);
                     const a = document.createElement('a');
                     a.href = url;

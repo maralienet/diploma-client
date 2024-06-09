@@ -36,7 +36,6 @@ function CarsHandbook() {
         else if (gosNumber !== '' && brand === '') {
             let filter = carsList.filter(car => car.gosNumber.toLowerCase().startsWith(gosNumber.toLowerCase()));
             filter = groupByBrand(filter);
-            console.log(filter)
             setFilteredCars(filter);
         }
         else if (gosNumber !== '' && brand !== '') {

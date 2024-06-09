@@ -55,7 +55,6 @@ function TrucsManagement() {
                         <th>Грузоподъёмность (в кг)</th>
                         <th>Активность</th>
                         <th></th>
-                        {/* <th></th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -66,9 +65,6 @@ function TrucsManagement() {
                                 <td>{car.gosNumber && car.gosNumber}</td>
                                 <td>{car.capacity && car.capacity}</td>
                                 <td>{car.active && car.active ? 'Активен' : 'Не активен'}</td>
-                                {/* <td className="del edit" title='Изменить' onClick={() => { setId(car.id); setEdit(true); }}>
-                                    <img src='https://cdn-icons-png.flaticon.com/512/860/860814.png' />
-                                </td> */}
                                 <td className="del" title='Удалить' onClick={() => { setId(car.id); setAsk(true); setTxt(`Вы уверены, что хотите удалить машину с номером ${car.gosNumber}?`) }}>
                                     <img src='https://cdn-icons-png.flaticon.com/512/1828/1828945.png' />
                                 </td>

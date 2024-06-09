@@ -17,7 +17,6 @@ function AddCar({ onAddCar, confirm, cancel }) {
             capacity: capacity
         };
         axios.post('https://diploma-server-1.onrender.com/cars', car).then(() => {
-            console.log(car)
             onAddCar(car);
             confirm();
         });
