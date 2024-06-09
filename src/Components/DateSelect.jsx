@@ -49,7 +49,7 @@ function DateSelect() {
     function isOccupiedThen() {
         let carsIds = [];
         if (cars) carsIds = cars.map(car => car.id);
-        console.log(scedPlan)
+        console.log(moment(scedPlan[0].dateFrom))
         let sced = scedPlan.filter(item => moment(item.dateFrom).isSame(dateFrom));
         sced.forEach(item => {
             console.log(item)
