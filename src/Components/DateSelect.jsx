@@ -37,6 +37,7 @@ function DateSelect() {
         let carsIds = [];
         if (cars) carsIds = cars.map(car => car.id);
         scedActive.forEach(item => {
+            console.log(item)
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
                 dispatch(removeCarsDetail(item.carId))
@@ -50,6 +51,7 @@ function DateSelect() {
         if (cars) carsIds = cars.map(car => car.id);
         let sced = scedPlan.filter(item => moment(item.dateFrom).isSame(dateFrom));
         sced.forEach(item => {
+            console.log(item)
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
                 dispatch(removeCarsDetail(item.carId))
