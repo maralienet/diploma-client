@@ -63,7 +63,8 @@ function DateSelect() {
                     return moment(item.dateFrom).isBetween(dateFrom, dateTo, null, '[]');
                 else
                     return moment(dateFrom).isSameOrAfter(item.dateFrom) && dateTo.isSameOrBefore(item.dateTo);
-            });        
+            });
+        console.log(sced)
         sced.forEach(item => {
             console.log(item)
             if (carsIds.includes(item.carId)) {
