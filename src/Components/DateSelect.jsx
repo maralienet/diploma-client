@@ -48,22 +48,18 @@ function DateSelect() {
     function isOccupiedThen() {
         let carsIds = [];
         if (cars) carsIds = cars.map(car => car.id);
-        let sced;
-        if (!dateTo)
-            sced = scedPlan.filter(item => {
-                if (!item.dateTo)
-                    return moment(dateFrom).isSame(moment(item.dateFrom));
-                else
-                    return moment(dateFrom).isBetween(moment(item.dateFrom), moment(item.dateTo), null, '[]');
-            });
-        else
-            sced = scedPlan.filter(item => {
-                if (!item.dateTo)
-                    return moment(item.dateFrom).isBetween(moment(dateFrom), moment(dateTo), null, '[]');
-                else
-                    return (moment(item.dateFrom).isSameOrAfter(moment(dateFrom)) && moment(item.dateTo).isSameOrBefore(moment(dateTo))) ||
-                    (moment(dateFrom).isSameOrAfter(moment(item.dateFrom)) && moment(dateTo).isSameOrBefore(moment(item.dateTo)));
-            });
+        let momentDateFrom = moment(dateFrom);
+        let momentDateTo = dateTo ? moment(dateTo) : null;
+        let sced = scedPlan.filter(item => {
+            let momentItemDateFrom = moment(item.dateFrom);
+            let momentItemDateTo = item.dateTo ? moment(item.dateTo) : null;
+            if (!momentDateTo)
+                return !item.dateTo ? momentDateFrom.isSame(momentItemDateFrom) : momentDateFrom.isBetween(momentItemDateFrom, momentItemDateTo, null, '[]');
+            else
+                return !item.dateTo ? momentItemDateFrom.isBetween(momentDateFrom, momentDateTo, null, '[]') :
+                    (momentItemDateFrom.isSameOrAfter(momentDateFrom) && momentItemDateTo.isSameOrBefore(momentDateTo)) ||
+                    (momentDateFrom.isSameOrAfter(momentItemDateFrom) && momentDateTo.isSameOrBefore(momentItemDateTo));
+        });
         sced.forEach(item => {
             if (carsIds.includes(item.carId)) {
                 setError(`На выбранную дату грузовик ${item.car} занят`);
