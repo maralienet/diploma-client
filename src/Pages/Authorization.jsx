@@ -53,7 +53,7 @@ function Authorization() {
                         </div>
                         <div className="inputDiv">
                             <label>
-                                <input type="password" placeholder="Пароль" maxLength={8} onChange={(e) => setPass(e.target.value)} />
+                                <input type="password" placeholder="Пароль" onChange={(e) => setPass(e.target.value)} />
                                 <span>Пароль</span>
                             </label>
                             <span className={passError ? "error" : ''}>{passError}</span>
